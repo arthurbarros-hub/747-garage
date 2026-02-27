@@ -1,0 +1,28 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+enum CarStatus {
+  AVAILABLE
+  RESERVED
+  SOLD
+}
+
+model Car {
+  id           String    @id @default(cuid())
+  title        String
+  year         Int
+  priceCents   Int
+  mileageKm    Int?
+  engine       String?
+  transmission String?
+  description  String?
+  status       CarStatus @default(AVAILABLE)
+
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+}
