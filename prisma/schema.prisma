@@ -1,0 +1,50 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+enum CarStatus {
+  AVAILABLE
+  RESERVED
+  SOLD
+}
+
+enum ReservationStatus {
+  PENDING
+  CONFIRMED
+  CANCELLED
+}
+
+model Car {
+  id           String    @id @default(cuid())
+  title        String
+  year         Int
+  priceCents   Int
+  mileageKm    Int?
+  engine       String?
+  transmission String?
+  description  String?
+  status       CarStatus @default(AVAILABLE)
+
+  reservations Reservation[]
+
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+}
+
+model Reservation {
+  id        String            @id @default(cuid())
+  carId     String
+  car       Car               @relation(fields: [carId], references: [id], onDelete: Cascade)
+  name      String
+  email     String
+  phone     String
+  message   String?
+  status    ReservationStatus @default(PENDING)
+
+  createdAt DateTime          @default(now())
+  updatedAt DateTime          @updatedAt
+}
