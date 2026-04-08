@@ -3,66 +3,7 @@
 import { useMemo, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-
-type Vehicle = {
-  id: string;
-  title: string;
-  year: string;
-  transmission: string;
-  price: string;
-  description: string;
-  notes?: string;
-  images: string[];
-};
-
-const vehicles: Vehicle[] = [
-  {
-    id: "w201-prata",
-    title: "Mercedes Benz 190E 2.3 8V (Prata)",
-    year: "1989",
-    transmission: "Manual 5 marchas",
-    price: "R$ 27.000",
-    description:
-      "Exemplar prata, íntegro para uso e projeto. Boa base para restauração com visual original.",
-    notes: "Anúncio de teste com 3 fotos.",
-    images: [
-      "/vehicles/prata-1.png",
-      "/vehicles/prata-2.png",
-      "/vehicles/prata-3.png",
-    ],
-  },
-  {
-    id: "w201-branco",
-    title: "Mercedes Benz 190E 2.3 8V (Branco)",
-    year: "1989",
-    transmission: "Manual 5 marchas",
-    price: "R$ 28.000",
-    description:
-      "104.000 km, interior azul, super conservada. Excelente base para coleção, restauração ou projeto.",
-    notes: "É... mas acho que terei que virar doadora de peças...",
-    images: [
-      "/vehicles/branco-1.png",
-      "/vehicles/branco-2.png",
-      "/vehicles/branco-3.png",
-    ],
-  },
-  {
-    id: "w201-preto",
-    title: "W201 190E 2.3 8V (Preto)",
-    year: "1989",
-    transmission: "Automático",
-    price: "R$ 25.000",
-    description:
-      "Documentação ok. Elétrica em ordem exceto AC. Rodando normalmente. Exemplar para restauro original ou projeto personalizado.",
-    notes:
-      "Olá pessoal... fui vendida... meu novo dono irá aprontar... mandarei notícias!",
-    images: [
-      "/vehicles/preto-1.png",
-      "/vehicles/preto-2.png",
-      "/vehicles/preto-3.png",
-    ],
-  },
-];
+import { vehicles } from "@/lib/vehicles-data";
 
 export default function VehiclesPage() {
   const initialSlides = useMemo(
@@ -89,21 +30,22 @@ export default function VehiclesPage() {
   }
 
   return (
-    <main className="min-h-screen bg-ink text-off">
-      <section className="mx-auto max-w-7xl px-6 py-16">
-        <div className="mb-12 flex items-end justify-between gap-6">
+    <main className="relative min-h-screen overflow-hidden bg-ink text-off">
+      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.022)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.022)_1px,transparent_1px)] bg-[size:90px_90px] opacity-10" />
+      <section className="relative mx-auto max-w-7xl px-6 py-14 sm:py-16 lg:py-24">
+        <div className="mb-10 flex flex-wrap items-end justify-between gap-6">
           <div>
-            <h1 className="text-5xl font-semibold tracking-tight">Veículos à venda</h1>
-            <p className="mt-3 max-w-2xl text-off/70">
-              Seleção de Mercedes clássicas. Passe o mouse para efeito de destaque e navegue nas fotos.
+            <h1 className="text-4xl font-semibold tracking-tight sm:text-5xl">Veículos à venda</h1>
+            <p className="mt-3 max-w-2xl text-sm text-off/72 sm:text-base">
+              Seleção de anúncios com foco em Mercedes clássicas e apresentação premium.
             </p>
           </div>
 
           <Link
             href="/"
-            className="inline-flex items-center justify-center rounded-md border border-off/20 bg-off/5 px-5 py-3 text-sm font-medium text-off transition hover:bg-off/10"
+            className="inline-flex items-center justify-center rounded-full border border-off/20 bg-off/5 px-6 py-3 text-sm font-semibold text-off transition hover:bg-off/10"
           >
-            Voltar para home
+            Voltar para início
           </Link>
         </div>
 
@@ -114,16 +56,18 @@ export default function VehiclesPage() {
             return (
               <article
                 key={vehicle.id}
-                className="group overflow-hidden rounded-3xl border border-off/10 bg-surface p-5 shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl"
+                className="group overflow-hidden rounded-3xl border border-off/10 bg-[#0f0f0f]/95 p-5 shadow-[0_24px_70px_rgba(0,0,0,0.45)] transition-all duration-300 hover:-translate-y-2 hover:border-gold/30"
               >
                 <div className="relative overflow-hidden rounded-2xl">
-                  <Image
-                    src={vehicle.images[current]}
-                    alt={vehicle.title}
-                    width={900}
-                    height={600}
-                    className="aspect-[4/3] w-full object-cover"
-                  />
+                  <Link href={`/vehicles/${vehicle.id}`}>
+                    <Image
+                      src={vehicle.images[current]}
+                      alt={vehicle.title}
+                      width={900}
+                      height={600}
+                      className="aspect-[4/3] w-full object-cover"
+                    />
+                  </Link>
 
                   <button
                     onClick={() => changeSlide(vehicle.id, -1)}
@@ -155,21 +99,32 @@ export default function VehiclesPage() {
                   </div>
                 </div>
 
-                <div className="mt-5 space-y-3">
-                  <div className="flex items-start justify-between gap-3">
+                <div className="mt-6 space-y-3">
+                  <div className="flex flex-col items-start justify-between gap-3 sm:flex-row sm:items-start">
                     <div>
-                      <h2 className="text-xl font-semibold">{vehicle.title}</h2>
+                      <h2 className="text-xl font-semibold">
+                        <Link href={`/vehicles/${vehicle.id}`} className="transition hover:text-gold">
+                          {vehicle.title}
+                        </Link>
+                      </h2>
                       <p className="text-xs uppercase tracking-[0.25em] text-off/70">
                         {vehicle.year} · {vehicle.transmission}
                       </p>
                     </div>
-                    <span className="rounded-full bg-off px-3 py-1 text-sm font-semibold text-ink">
+                    <span className="w-full rounded-2xl border border-gold/30 bg-[#f3e6c1] px-4 py-2 text-center text-lg font-black tracking-tight text-ink shadow-[0_10px_35px_rgba(198,167,94,0.25)] sm:min-w-[9.4rem] sm:w-auto sm:text-xl">
                       {vehicle.price}
                     </span>
                   </div>
 
                   <p className="text-sm text-off/80">{vehicle.description}</p>
                   {vehicle.notes && <p className="text-xs italic text-off/70">{vehicle.notes}</p>}
+
+                  <Link
+                    href={`/vehicles/${vehicle.id}`}
+                    className="inline-flex items-center rounded-full border border-off/20 bg-off/5 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-off/85 transition hover:border-gold/35 hover:text-gold"
+                  >
+                    Ver anúncio
+                  </Link>
                 </div>
               </article>
             );
