@@ -54,7 +54,7 @@ export default function RootLayout({
                   rel="noreferrer"
                   className="transition hover:text-gold"
                 >
-                  Meu Instagram
+                  Instagram
                 </a>
                 <a
                   href="https://www.linkedin.com/in/arthur-mansur-05a617305/"
@@ -62,7 +62,7 @@ export default function RootLayout({
                   rel="noreferrer"
                   className="transition hover:text-gold"
                 >
-                  Meu LinkedIn
+                  LinkedIn
                 </a>
               </div>
             </div>

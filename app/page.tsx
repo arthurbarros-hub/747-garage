@@ -2,6 +2,14 @@
 import Link from "next/link";
 
 export default function Home() {
+  const heroHighlights = [
+    { label: "Foco", value: "Mercedes classicas" },
+    { label: "Assinatura", value: "Curadoria premium" },
+    { label: "Contato", value: "Resposta direta no WhatsApp" },
+    { label: "Metodo", value: "Selecao tecnica e transparente" },
+    { label: "Presenca", value: "Atendimento humano e direto" },
+  ];
+
   return (
     <main className="relative isolate min-h-screen overflow-hidden bg-ink text-off">
       <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.025)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.025)_1px,transparent_1px)] bg-[size:96px_96px] opacity-10" />
@@ -46,18 +54,32 @@ export default function Home() {
           </Link>
         </div>
 
-        <div className="mt-14 grid w-full gap-4 sm:grid-cols-3">
-          <div className="rounded-3xl border border-off/10 bg-white/5 px-5 py-4 backdrop-blur-sm">
-            <p className="text-[0.7rem] uppercase tracking-[0.35em] text-off/45">Foco</p>
-            <p className="mt-2 text-sm font-medium text-off/85">Mercedes clássicas</p>
-          </div>
-          <div className="rounded-3xl border border-off/10 bg-white/5 px-5 py-4 backdrop-blur-sm">
-            <p className="text-[0.7rem] uppercase tracking-[0.35em] text-off/45">Assinatura</p>
-            <p className="mt-2 text-sm font-medium text-off/85">Curadoria premium</p>
-          </div>
-          <div className="rounded-3xl border border-off/10 bg-white/5 px-5 py-4 backdrop-blur-sm">
-            <p className="text-[0.7rem] uppercase tracking-[0.35em] text-off/45">Contato</p>
-            <p className="mt-2 text-sm font-medium text-off/85">Resposta direta no WhatsApp</p>
+        <div className="hero-marquee mt-14 w-full" aria-label="Diferenciais da 747 Garage">
+          <div className="hero-marquee-track">
+            {heroHighlights.map((item) => (
+              <article
+                key={item.label}
+                className="hero-marquee-item group min-w-[17rem] rounded-[1.7rem] border border-off/12 bg-[linear-gradient(180deg,rgba(255,255,255,0.06)_0%,rgba(255,255,255,0.02)_100%)] px-5 py-4 text-left backdrop-blur-sm transition duration-300 hover:-translate-y-0.5 hover:border-gold/30 hover:shadow-[0_18px_40px_rgba(0,0,0,0.32)] sm:min-w-[19rem]"
+              >
+                <p className="text-[0.68rem] uppercase tracking-[0.35em] text-off/50 transition group-hover:text-gold/85">
+                  {item.label}
+                </p>
+                <p className="mt-2 text-sm font-medium text-off/88 sm:text-[0.95rem]">{item.value}</p>
+              </article>
+            ))}
+
+            {heroHighlights.map((item) => (
+              <article
+                key={`${item.label}-clone`}
+                aria-hidden="true"
+                className="hero-marquee-item hero-marquee-clone group min-w-[17rem] rounded-[1.7rem] border border-off/12 bg-[linear-gradient(180deg,rgba(255,255,255,0.06)_0%,rgba(255,255,255,0.02)_100%)] px-5 py-4 text-left backdrop-blur-sm transition duration-300 hover:-translate-y-0.5 hover:border-gold/30 hover:shadow-[0_18px_40px_rgba(0,0,0,0.32)] sm:min-w-[19rem]"
+              >
+                <p className="text-[0.68rem] uppercase tracking-[0.35em] text-off/50 transition group-hover:text-gold/85">
+                  {item.label}
+                </p>
+                <p className="mt-2 text-sm font-medium text-off/88 sm:text-[0.95rem]">{item.value}</p>
+              </article>
+            ))}
           </div>
         </div>
       </section>
@@ -67,9 +89,9 @@ export default function Home() {
           <figure className="overflow-hidden rounded-[2.25rem] border border-off/10 bg-[#111111]/90 shadow-[0_20px_50px_rgba(0,0,0,0.35)]">
             <div className="relative aspect-[4/5] sm:aspect-[4/4.5] lg:aspect-[3/4]">
               <img
-                src="/sobre/sobre1.png"
-                alt="Equipe 747 Garage em frente aos carros clássicos"
-                className="h-full w-full object-cover"
+                src="/sobre/2.jpeg"
+                alt="Edmilson e Eliton, irmaos e socios da 747 Garage"
+                className="h-full w-full bg-black object-contain object-center"
               />
 
               <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.05)_0%,rgba(0,0,0,0.18)_100%)]" />
@@ -77,7 +99,7 @@ export default function Home() {
               <div className="absolute inset-x-5 bottom-5 rounded-[1.4rem] border border-off/12 bg-black/55 px-4 py-3 backdrop-blur-md">
                 <p className="text-[0.65rem] uppercase tracking-[0.35em] text-gold/80">747 Garage</p>
                 <p className="mt-2 text-sm font-medium text-off/90">
-                  História, presença e rigor em cada detalhe.
+                  Edmilson e Eliton lideram a garagem com curadoria e presenca.
                 </p>
               </div>
             </div>
@@ -95,16 +117,18 @@ export default function Home() {
 
             <div className="mt-6 space-y-5 text-sm leading-7 text-off/78 sm:text-base">
               <p>
-                Nossa história nasce da paixão por automóveis com identidade. Começamos de forma simples,
-                com poucos carros e um olhar criterioso. Com o tempo, essa visão se transformou em método:
-                selecionar com rigor, apresentar com precisão e valorizar cada detalhe.
+                A 747 Garage foi construida pelos irmaos e socios Edmilson e Eliton, dois apaixonados por
+                automoveis com identidade. O projeto comecou de forma simples, com poucos carros e um olhar
+                criterioso para selecionar apenas o que realmente vale estar na garagem.
               </p>
               <p>
-                Inspirados pela estética alemã, seguimos uma linha clara e intencional — sem excessos,
-                sem ruído, apenas o essencial bem executado.
+                Com o tempo, essa visao virou metodo: curadoria tecnica, apresentacao precisa e cuidado real
+                em cada detalhe. Inspirados pela estetica alema, eles seguem uma linha clara e intencional,
+                sem excesso e com foco total na qualidade.
               </p>
               <p>
-                Mais do que vender carros, entregamos confiança, experiência e presença.
+                Mais do que vender carros, Edmilson e Eliton entregam confianca, experiencia e relacionamento
+                direto com cada cliente.
               </p>
               <p className="text-base font-medium text-off/92">
                 A 747 Garage é para quem entende que qualidade não se negocia.
@@ -130,6 +154,52 @@ export default function Home() {
               </p>
             </div>
           </div>
+        </div>
+
+        <div className="mx-auto mt-10 grid max-w-6xl gap-8 px-6 lg:grid-cols-[1.08fr_0.92fr] lg:items-center">
+          <div className="rounded-[2rem] border border-off/10 bg-white/5 p-8 backdrop-blur-md lg:p-10">
+            <p className="text-xs uppercase tracking-[0.4em] text-gold/80">Conheca o Edmilson</p>
+            <h3 className="mt-4 text-3xl font-semibold tracking-tight text-off sm:text-4xl">
+              Especialista Mercedes e contato direto da garagem.
+            </h3>
+
+            <div className="mt-6 space-y-5 text-sm leading-7 text-off/78 sm:text-base">
+              <p>
+                Edmilson e o mecanico especialista em Mercedes da 747 Garage. Ele atua no dia a dia da
+                oficina, acompanhando diagnostico, restauracao, revisao e preparacao tecnica dos carros.
+              </p>
+              <p>
+                E com ele que o cliente vai tratar diretamente sobre qualquer assunto da garagem: avaliacao,
+                duvidas tecnicas, orientacao de compra e planejamento de servicos.
+              </p>
+              <p className="text-base font-medium text-off/92">
+                Atendimento direto, tecnico e transparente para quem quer resolver com seguranca.
+              </p>
+            </div>
+          </div>
+
+          <figure className="overflow-hidden rounded-[2.25rem] border border-off/10 bg-[#111111]/90 shadow-[0_20px_50px_rgba(0,0,0,0.35)]">
+            <div className="relative aspect-[4/5] sm:aspect-[4/4.5] lg:aspect-[3/4]">
+              <img
+                src="/sobre/1.jpeg"
+                alt="Edmilson, mecanico especialista da 747 Garage"
+                className="h-full w-full object-cover object-center"
+              />
+
+              <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.05)_0%,rgba(0,0,0,0.18)_100%)]" />
+
+              <div className="absolute inset-x-5 bottom-5 rounded-[1.4rem] border border-off/12 bg-black/55 px-4 py-3 backdrop-blur-md">
+                <p className="text-[0.65rem] uppercase tracking-[0.35em] text-gold/80">Mecanica Mercedes</p>
+                <p className="mt-2 text-sm font-medium text-off/90">
+                  Fale com Edmilson para qualquer tema da garagem.
+                </p>
+              </div>
+            </div>
+
+            <figcaption className="border-t border-off/10 bg-black/35 px-5 py-4 text-xs uppercase tracking-[0.28em] text-off/55">
+              Atendimento direto com o especialista
+            </figcaption>
+          </figure>
         </div>
       </section>
 
