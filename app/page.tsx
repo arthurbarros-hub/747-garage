@@ -1,5 +1,8 @@
 
+"use client";
+
 import Link from "next/link";
+import { useEffect, useRef, useState } from "react";
 
 export default function Home() {
   const heroHighlights = [
@@ -10,8 +13,174 @@ export default function Home() {
     { label: "Presenca", value: "Atendimento humano e direto" },
   ];
 
+  const historyTimeline = [
+    {
+      year: "2019",
+      title: "Primeiros carros e serviços",
+      description: "Os primeiros carros de coleção Mercedes eram fotografados em local externo, onde a 747 Garage armazenava suas seleções premium antes de contar com estrutura própria.",
+      people: "",
+      image: "/historia/01-primeiros-carros-2019.jpeg",
+      alt: "Primeiro carro à venda na rua em 2019, antes da garagem",
+    },
+    {
+      year: "2020",
+      title: "Antes da garagem",
+      description: "Iniciava-se a fundação do espaço que viria a consolidar a 747 Garage como referência em preservação de veículos premium.",
+      people: "",
+      image: "/historia/02-construcao-inicio-2020.jpeg",
+      alt: "Início da construção da garagem em 2020",
+    },
+    {
+      year: "2020",
+      title: "Medições da cobertura",
+      description: "Précis levantamentos estruturais para a cobertura, garantindo ambiente controlado que protegesse as coleções Mercedes de intempéries.",
+      people: "",
+      image: "/historia/03-medicoes-cobertura-2020.jpeg",
+      alt: "Medições para a cobertura da garagem em 2020",
+    },
+    {
+      year: "2020",
+      title: "Alinhamento pronto",
+      description: "Estacas sendo posicionadas para dar continuidade estrutural ao projeto. Momento crítico da construção que estabeleceria as bases para a garagem de nossos sonhos.",
+      people: "Jalile, esposa de Edmilson, acompanhando o progresso",
+      image: "/historia/04-alinhamento-estacas-2020.jpeg",
+      alt: "Alinhamento e instalação de estacas em 2020, com Jalile",
+    },
+    {
+      year: "2020",
+      title: "Desenhos e projetos",
+      description: "O projeto materializado em papel: visão técnica que transformaria o espaço em um templo da curadoria Mercedes. Engenharia e paixão em harmonia.",
+      people: "Projeto de Eliton, sócio de Edmilson",
+      image: "/historia/05-desenhos-projetos-2020.jpeg",
+      alt: "Projeto em rascunho criado por Eliton em 2020",
+    },
+    {
+      year: "2021",
+      title: "Etapas da construção",
+      description: "Estrutura tomando forma. O solo preparado e nivelado para receber os pisos que abrigariam os veículos premium com a dignidade que merecem.",
+      people: "",
+      image: "/historia/06-etapas-construcao-2021.jpeg",
+      alt: "Estrutura da garagem pronta, preparação do piso em 2021",
+    },
+    {
+      year: "2024",
+      title: "Hoje — resultado atual",
+      description: "A 747 Garage consolidada: espaço premium onde coleções Mercedes repousam com segurança, iluminação natural e o cuidado que colecionadores exigem.",
+      people: "",
+      image: "/historia/07-resultado-atual-2024.jpeg",
+      alt: "Garagem 747 Garage completa com carros e infraestrutura em 2024",
+    },
+  ];
+
+  const contactInfo = [
+    {
+      label: "WHATSAPP",
+      title: "+55 11 93010-8649",
+      icon: "📱",
+    },
+    {
+      label: "ENDEREÇO",
+      title: "Rua Antonio Viana, 747",
+      icon: "📍",
+    },
+    {
+      label: "HORÁRIO",
+      title: "Seg–Sex 08h às 16h",
+      icon: "🕐",
+    },
+  ];
+
+  const [currentContactIndex, setCurrentContactIndex] = useState(0);
+
+  const nextContact = () => {
+    setCurrentContactIndex((prev) => (prev + 1) % contactInfo.length);
+  };
+
+  const prevContact = () => {
+    setCurrentContactIndex((prev) => (prev - 1 + contactInfo.length) % contactInfo.length);
+  };
+
+  const parallaxRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const parallaxContainer = parallaxRef.current;
+    if (!parallaxContainer) return;
+
+    let lastScrollY = 0;
+    let animationFrameId: number;
+
+    const handleScroll = () => {
+      lastScrollY = window.scrollY;
+    };
+
+    const updateParallax = () => {
+      const elements = parallaxContainer.querySelectorAll("[data-parallax]");
+      
+      elements.forEach((el: Element) => {
+        const element = el as HTMLElement;
+        const parallaxValue = element.getAttribute("data-parallax");
+        
+        if (!parallaxValue) return;
+
+        const rect = element.getBoundingClientRect();
+        const elementCenter = rect.top + rect.height / 2;
+        const viewportCenter = window.innerHeight / 2;
+        const distanceFromCenter = elementCenter - viewportCenter;
+        
+        // Parallax calcs baseado em velocidade
+        const speed = parseFloat(parallaxValue);
+        const offset = (distanceFromCenter * speed) * 0.5;
+
+        // Aplicar transform
+        element.style.transform = `translateY(${offset}px) translateZ(0)`;
+        element.style.willChange = "transform";
+      });
+    };
+
+    // Parallax nas imagens com escala suave
+    const updateImageParallax = () => {
+      const images = parallaxContainer.querySelectorAll("[data-parallax-image]");
+      
+      images.forEach((img: Element) => {
+        const imgEl = img as HTMLElement;
+        const parallaxImageValue = imgEl.getAttribute("data-parallax-image");
+        
+        if (!parallaxImageValue) return;
+
+        const rect = imgEl.getBoundingClientRect();
+        const top = rect.top;
+        const height = rect.height;
+        const speed = parseFloat(parallaxImageValue);
+        
+        // Escala e movimento só quando visível
+        if (top < window.innerHeight && top + height > 0) {
+          const progress = (window.innerHeight - top) / (window.innerHeight + height);
+          const scale = 1 + (progress * 0.08);
+          const offsetY = progress * 40;
+          
+          imgEl.style.transform = `scale(${scale}) translateY(${offsetY}px) translateZ(0)`;
+          imgEl.style.willChange = "transform";
+        }
+      });
+    };
+
+    const animate = () => {
+      updateParallax();
+      updateImageParallax();
+      animationFrameId = requestAnimationFrame(animate);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    animationFrameId = requestAnimationFrame(animate);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      cancelAnimationFrame(animationFrameId);
+    };
+  }, []);
+
   return (
-    <main className="relative isolate min-h-screen overflow-hidden bg-ink text-off">
+    <main className="relative isolate min-h-screen overflow-hidden bg-ink text-off" ref={parallaxRef}>
       <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.025)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.025)_1px,transparent_1px)] bg-[size:96px_96px] opacity-10" />
       <div className="pointer-events-none absolute inset-x-0 top-0 h-[520px] bg-[radial-gradient(circle_at_top,rgba(198,167,94,0.16),transparent_38%)]" />
 
@@ -84,128 +253,255 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="sobre" className="relative scroll-mt-36 border-t border-off/10 bg-black/10 py-24 lg:py-28">
-        <div className="mx-auto grid max-w-6xl gap-8 px-6 lg:grid-cols-[0.92fr_1.08fr] lg:items-center">
-          <figure className="overflow-hidden rounded-[2.25rem] border border-off/10 bg-[#111111]/90 shadow-[0_20px_50px_rgba(0,0,0,0.35)]">
-            <div className="relative aspect-[4/5] sm:aspect-[4/4.5] lg:aspect-[3/4]">
-              <img
-                src="/sobre/2.jpeg"
-                alt="Edmilson e Eliton, irmaos e socios da 747 Garage"
-                className="h-full w-full bg-black object-contain object-center"
-              />
+      <section id="sobre" className="relative scroll-mt-36 border-t border-off/10 bg-black/10 py-24 lg:py-32">
+        <style>{`
+          @keyframes fadeInUpReveal {
+            from {
+              opacity: 0;
+              transform: translateY(48px);
+            }
+            to {
+              opacity: 1;
+              transform: translateY(0);
+            }
+          }
 
-              <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.05)_0%,rgba(0,0,0,0.18)_100%)]" />
+          @keyframes fadeInLeftReveal {
+            from {
+              opacity: 0;
+              transform: translateX(-48px);
+            }
+            to {
+              opacity: 1;
+              transform: translateX(0);
+            }
+          }
 
-              <div className="absolute inset-x-5 bottom-5 rounded-[1.4rem] border border-off/12 bg-black/55 px-4 py-3 backdrop-blur-md">
-                <p className="text-[0.65rem] uppercase tracking-[0.35em] text-gold/80">747 Garage</p>
-                <p className="mt-2 text-sm font-medium text-off/90">
-                  Edmilson e Eliton lideram a garagem com curadoria e presenca.
-                </p>
+          @keyframes fadeInRightReveal {
+            from {
+              opacity: 0;
+              transform: translateX(48px);
+            }
+            to {
+              opacity: 1;
+              transform: translateX(0);
+            }
+          }
+
+          @keyframes slideInScale {
+            from {
+              opacity: 0;
+              transform: scale(0.95);
+            }
+            to {
+              opacity: 1;
+              transform: scale(1);
+            }
+          }
+
+          @keyframes staggerReveal {
+            0% { opacity: 0; transform: translateY(32px); }
+            100% { opacity: 1; transform: translateY(0); }
+          }
+
+          .reveal-up {
+            animation: fadeInUpReveal 0.8s ease-out forwards;
+            opacity: 0;
+          }
+
+          .reveal-left {
+            animation: fadeInLeftReveal 0.8s ease-out forwards;
+            opacity: 0;
+          }
+
+          .reveal-right {
+            animation: fadeInRightReveal 0.8s ease-out forwards;
+            opacity: 0;
+          }
+
+          .reveal-scale {
+            animation: slideInScale 0.8s ease-out forwards;
+            opacity: 0;
+          }
+
+          .stagger-1 { animation-delay: 0.1s; }
+          .stagger-2 { animation-delay: 0.2s; }
+          .stagger-3 { animation-delay: 0.3s; }
+          .stagger-4 { animation-delay: 0.4s; }
+          .stagger-5 { animation-delay: 0.5s; }
+          .stagger-6 { animation-delay: 0.6s; }
+
+          .card-hover {
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.320, 1);
+          }
+
+          .card-hover:hover {
+            transform: translateY(-8px);
+            border-color: rgba(198, 167, 94, 0.4);
+            background: linear-gradient(135deg, rgba(198,167,94,0.12) 0%, rgba(198,167,94,0.04) 100%);
+          }
+
+          .history-card {
+            transition: all 0.5s ease;
+            opacity: 0;
+            animation: fadeInUpReveal 0.8s ease-out forwards;
+          }
+
+          .history-card:nth-child(1) { animation-delay: 0s; }
+          .history-card:nth-child(2) { animation-delay: 0.15s; }
+          .history-card:nth-child(3) { animation-delay: 0.3s; }
+          .history-card:nth-child(4) { animation-delay: 0.45s; }
+          .history-card:nth-child(5) { animation-delay: 0.6s; }
+          .history-card:nth-child(6) { animation-delay: 0.75s; }
+          .history-card:nth-child(7) { animation-delay: 0.9s; }
+        `}</style>
+
+        <div className="mx-auto max-w-6xl px-6">
+          {/* Hero intro */}
+          <div className="reveal-up mb-20 lg:mb-28">
+            <p className="text-xs uppercase tracking-[0.4em] text-gold/80">A história</p>
+            <h1 className="mt-4 text-4xl font-black tracking-tight text-off sm:text-5xl lg:text-6xl">
+              Precisão construída dia a dia.
+            </h1>
+            <p className="mt-6 max-w-2xl text-base leading-8 text-off/75 lg:text-lg">
+              Conheça a jornada de uma garagem que começou com uma exigência interna e se tornou referência de qualidade, método e presença.
+            </p>
+          </div>
+
+          {/* Main narrative + people */}
+          <div className="grid gap-10 lg:grid-cols-[1fr_1.2fr] lg:items-start mb-20">
+            <figure className="reveal-left overflow-hidden rounded-[2.5rem] border border-off/10 bg-[#111111]/90 shadow-[0_20px_60px_rgba(0,0,0,0.4)]" data-parallax-image="0.3">
+              <div className="relative aspect-[3/4]">
+                <img
+                  src="/sobre/2.jpeg"
+                  alt="Edmilson e Eliton, sócios da 747 Garage"
+                  className="h-full w-full bg-black object-cover object-center"
+                />
+                <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.05)_0%,rgba(0,0,0,0.25)_100%)]" />
+                <div className="absolute inset-x-5 bottom-5 rounded-[1.6rem] border border-off/15 bg-black/60 px-5 py-4 backdrop-blur-md">
+                  <p className="text-[0.65rem] uppercase tracking-[0.35em] text-gold/85">Osmilson & Eliton</p>
+                  <p className="mt-2 text-sm font-medium text-off/95">Precisão não se improvisa</p>
+                </div>
               </div>
-            </div>
+            </figure>
 
-            <figcaption className="border-t border-off/10 bg-black/35 px-5 py-4 text-xs uppercase tracking-[0.28em] text-off/55">
-              Excelência alemã com identidade própria
-            </figcaption>
-          </figure>
-
-          <div className="rounded-[2rem] border border-off/10 bg-white/5 p-8 backdrop-blur-md lg:p-10">
-            <p className="text-xs uppercase tracking-[0.4em] text-gold/80">Sobre nós</p>
-            <h2 className="mt-4 max-w-3xl text-3xl font-semibold tracking-tight text-off sm:text-4xl">
-              Na 747 Garage, excelência não é promessa — é padrão.
-            </h2>
-
-            <div className="mt-6 space-y-5 text-sm leading-7 text-off/78 sm:text-base">
-              <p>
-                A 747 Garage foi construida pelos irmaos e socios Edmilson e Eliton, dois apaixonados por
-                automoveis com identidade. O projeto comecou de forma simples, com poucos carros e um olhar
-                criterioso para selecionar apenas o que realmente vale estar na garagem.
-              </p>
-              <p>
-                Com o tempo, essa visao virou metodo: curadoria tecnica, apresentacao precisa e cuidado real
-                em cada detalhe. Inspirados pela estetica alema, eles seguem uma linha clara e intencional,
-                sem excesso e com foco total na qualidade.
-              </p>
-              <p>
-                Mais do que vender carros, Edmilson e Eliton entregam confianca, experiencia e relacionamento
-                direto com cada cliente.
-              </p>
-              <p className="text-base font-medium text-off/92">
-                A 747 Garage é para quem entende que qualidade não se negocia.
-              </p>
-            </div>
-
-            <div className="mt-8 grid gap-4 sm:grid-cols-2">
-              <div className="rounded-[1.5rem] border border-off/10 bg-[#111111]/90 p-5">
-                <p className="text-xs uppercase tracking-[0.35em] text-off/50">Curadoria</p>
-                <p className="mt-4 text-base font-medium text-off/90">Seleção rigorosa de clássicos com identidade.</p>
+            <div className="reveal-right space-y-6">
+              <div className="reveal-up stagger-1 card-hover rounded-[2rem] border border-gold/20 bg-[linear-gradient(135deg,rgba(198,167,94,0.08)_0%,rgba(198,167,94,0.03)_100%)] p-6 backdrop-blur-sm" data-parallax="0.4">
+                <p className="text-xs uppercase tracking-[0.35em] text-gold/80">Como tudo começou</p>
+                <p className="mt-4 text-sm leading-7 text-off/82">Não começou grande. Começou com uma ideia, um espaço limitado e uma exigência interna que nunca aceitou o comum. Antes de qualquer estrutura, existia um padrão — mesmo que ainda invisível.</p>
               </div>
-              <div className="rounded-[1.5rem] border border-off/10 bg-[#111111]/90 p-5">
-                <p className="text-xs uppercase tracking-[0.35em] text-off/50">Estilo</p>
-                <p className="mt-4 text-base font-medium text-off/90">Visual limpo, intencional e com presença alemã.</p>
-              </div>
-            </div>
 
-            <div className="mt-4 rounded-[1.5rem] border border-off/10 bg-black/35 p-5">
-              <p className="text-xs uppercase tracking-[0.35em] text-off/50">Identidade visual</p>
-              <p className="mt-4 text-sm leading-7 text-off/76 sm:text-base">
-                Uma composição pensada para equilibrar a história da garagem com um visual mais editorial,
-                limpo e memorável, sem excesso de elementos.
-              </p>
+              <div className="reveal-up stagger-2 card-hover rounded-[2rem] border border-gold/20 bg-[linear-gradient(135deg,rgba(198,167,94,0.08)_0%,rgba(198,167,94,0.03)_100%)] p-6 backdrop-blur-sm" data-parallax="0.45">
+                <p className="text-xs uppercase tracking-[0.35em] text-gold/80">Maiores dificuldades</p>
+                <p className="mt-4 text-sm leading-7 text-off/82">No início, tudo exigia mais. Mais esforço, mais tempo, mais paciência. Manter o nível, mesmo sem as condições ideais, foi o que mais desafiou.</p>
+              </div>
+
+              <div className="reveal-up stagger-3 card-hover rounded-[2rem] border border-gold/20 bg-[linear-gradient(135deg,rgba(198,167,94,0.08)_0%,rgba(198,167,94,0.03)_100%)] p-6 backdrop-blur-sm" data-parallax="0.5">
+                <p className="text-xs uppercase tracking-[0.35em] text-gold/80">Momento de virada</p>
+                <p className="mt-4 text-sm leading-7 text-off/82">A mudança não foi anunciada. Ela apareceu nos detalhes — no acabamento preciso, no cuidado percebido. Quando se vê, já não é tentativa. É padrão.</p>
+              </div>
+
+              <div className="reveal-up stagger-4 card-hover rounded-[2rem] border border-gold/20 bg-[linear-gradient(135deg,rgba(198,167,94,0.08)_0%,rgba(198,167,94,0.03)_100%)] p-6 backdrop-blur-sm" data-parallax="0.35">
+                <p className="text-xs uppercase tracking-[0.35em] text-gold/80">Nossa missão</p>
+                <p className="mt-4 text-sm leading-7 text-off/82">Seguir construindo com precisão. Aprimorar cada etapa, ajustar cada detalhe e manter um nível que não depende de comparação — apenas de continuidade.</p>
+              </div>
             </div>
           </div>
-        </div>
 
-        <div className="mx-auto mt-10 grid max-w-6xl gap-8 px-6 lg:grid-cols-[1.08fr_0.92fr] lg:items-center">
-          <div className="rounded-[2rem] border border-off/10 bg-white/5 p-8 backdrop-blur-md lg:p-10">
-            <p className="text-xs uppercase tracking-[0.4em] text-gold/80">Conheca o Edmilson</p>
-            <h3 className="mt-4 text-3xl font-semibold tracking-tight text-off sm:text-4xl">
-              Especialista Mercedes e contato direto da garagem.
-            </h3>
-
-            <div className="mt-6 space-y-5 text-sm leading-7 text-off/78 sm:text-base">
-              <p>
-                Edmilson e o mecanico especialista em Mercedes da 747 Garage. Ele atua no dia a dia da
-                oficina, acompanhando diagnostico, restauracao, revisao e preparacao tecnica dos carros.
-              </p>
-              <p>
-                E com ele que o cliente vai tratar diretamente sobre qualquer assunto da garagem: avaliacao,
-                duvidas tecnicas, orientacao de compra e planejamento de servicos.
-              </p>
-              <p className="text-base font-medium text-off/92">
-                Atendimento direto, tecnico e transparente para quem quer resolver com seguranca.
-              </p>
+          {/* Marcos timeline - compact horizontal */}
+          <div className="reveal-up mb-20 lg:mb-28">
+            <h2 className="text-2xl font-semibold tracking-tight text-off lg:text-3xl mb-10">Marcos que moldaram a garagem</h2>
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              <div className="reveal-up stagger-1 card-hover rounded-[1.6rem] border border-gold/20 bg-[linear-gradient(135deg,rgba(198,167,94,0.08)_0%,rgba(198,167,94,0.03)_100%)] p-5 text-sm" data-parallax="0.25">
+                <p className="text-xs uppercase tracking-[0.3em] text-gold/85 font-bold">Fevereiro 2020</p>
+                <h3 className="mt-2 font-semibold text-off">A ideia</h3>
+              </div>
+              <div className="reveal-up stagger-2 card-hover rounded-[1.6rem] border border-gold/20 bg-[linear-gradient(135deg,rgba(198,167,94,0.08)_0%,rgba(198,167,94,0.03)_100%)] p-5 text-sm" data-parallax="0.3">
+                <p className="text-xs uppercase tracking-[0.3em] text-gold/85 font-bold">Abril 2020</p>
+                <h3 className="mt-2 font-semibold text-off">Início da obra</h3>
+              </div>
+              <div className="reveal-up stagger-3 card-hover rounded-[1.6rem] border border-gold/20 bg-[linear-gradient(135deg,rgba(198,167,94,0.08)_0%,rgba(198,167,94,0.03)_100%)] p-5 text-sm" data-parallax="0.35">
+                <p className="text-xs uppercase tracking-[0.3em] text-gold/85 font-bold">2022</p>
+                <h3 className="mt-2 font-semibold text-off">Inauguração</h3>
+              </div>
+              <div className="reveal-up stagger-4 card-hover rounded-[1.6rem] border border-gold/20 bg-[linear-gradient(135deg,rgba(198,167,94,0.08)_0%,rgba(198,167,94,0.03)_100%)] p-5 text-sm sm:col-span-2" data-parallax="0.28">
+                <p className="text-xs uppercase tracking-[0.3em] text-gold/85 font-bold">Naiorezende</p>
+                <h3 className="mt-2 font-semibold text-off">Primeiro grande reconhecimento</h3>
+              </div>
+              <div className="reveal-up stagger-5 card-hover rounded-[1.6rem] border border-gold/20 bg-[linear-gradient(135deg,rgba(198,167,94,0.08)_0%,rgba(198,167,94,0.03)_100%)] p-5 text-sm" data-parallax="0.32">
+                <p className="text-xs uppercase tracking-[0.3em] text-gold/85 font-bold">Pietro Fittipaldi</p>
+                <h3 className="mt-2 font-semibold text-off">Referência</h3>
+              </div>
             </div>
           </div>
 
-          <figure className="overflow-hidden rounded-[2.25rem] border border-off/10 bg-[#111111]/90 shadow-[0_20px_50px_rgba(0,0,0,0.35)]">
-            <div className="relative aspect-[4/5] sm:aspect-[4/4.5] lg:aspect-[3/4]">
-              <img
-                src="/sobre/1.jpeg"
-                alt="Edmilson, mecanico especialista da 747 Garage"
-                className="h-full w-full object-cover object-center"
-              />
+          {/* Visual timeline - fotos da história */}
+          <div className="reveal-up">
+            <h2 className="text-2xl font-semibold tracking-tight text-off lg:text-3xl mb-12" data-parallax="0.15">A construção, visual</h2>
+            <div className="space-y-6">
+              {historyTimeline.map((item, idx) => (
+                <article
+                  key={`${item.year}-${item.title}`}
+                  className="history-card grid items-start gap-6 overflow-hidden rounded-[2.2rem] border border-off/12 bg-[linear-gradient(135deg,rgba(20,20,20,0.8)_0%,rgba(10,10,10,0.6)_100%)] p-6 shadow-[0_20px_60px_rgba(0,0,0,0.3)] lg:grid-cols-[1.1fr_0.9fr] lg:p-7 hover:border-gold/25 transition-all duration-500" data-parallax="0.25"
+                >
+                  <div className="overflow-hidden rounded-[1.6rem] border border-off/15 bg-[linear-gradient(180deg,rgba(16,16,16,0.9)_0%,rgba(8,8,8,0.75)_100%)]">
+                    <div className="relative flex items-center justify-center p-2 lg:p-3">
+                      <img 
+                        src={item.image} 
+                        alt={item.alt} 
+                        className="h-auto max-h-[34rem] w-full rounded-[1.2rem] object-contain object-center hover:scale-[1.02] transition-transform duration-700" 
+                        data-parallax-image="0.3"
+                      />
+                      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,transparent_0%,rgba(0,0,0,0.12)_100%)]" />
+                    </div>
+                  </div>
 
-              <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.05)_0%,rgba(0,0,0,0.18)_100%)]" />
+                  <div className="self-start rounded-[1.6rem] border border-off/12 bg-[linear-gradient(180deg,rgba(0,0,0,0.3)_0%,rgba(0,0,0,0.1)_100%)] p-6 backdrop-blur-sm">
+                    <div>
+                      <p className="text-xs uppercase tracking-[0.4em] text-gold/85 font-bold">{item.year}</p>
+                      <h3 className="mt-4 text-xl font-bold tracking-tight text-off lg:text-2xl">{item.title}</h3>
+                      <p className="mt-4 text-sm leading-7 text-off/80 lg:text-base">{item.description}</p>
+                      {item.people && <p className="mt-3 text-xs uppercase tracking-[0.25em] text-off/55 font-medium">{item.people}</p>}
+                    </div>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
 
-              <div className="absolute inset-x-5 bottom-5 rounded-[1.4rem] border border-off/12 bg-black/55 px-4 py-3 backdrop-blur-md">
-                <p className="text-[0.65rem] uppercase tracking-[0.35em] text-gold/80">Mecanica Mercedes</p>
-                <p className="mt-2 text-sm font-medium text-off/90">
-                  Fale com Edmilson para qualquer tema da garagem.
-                </p>
+          {/* Edmilson profile */}
+          <div className="reveal-up mt-20 lg:mt-28 grid gap-10 lg:grid-cols-[1.2fr_1fr] lg:items-center">
+            <div className="reveal-left">
+              <p className="text-xs uppercase tracking-[0.4em] text-gold/80 mb-4">Contato direto</p>
+              <h2 className="text-3xl font-bold tracking-tight text-off lg:text-4xl mb-8">Edmilson — especialista Mercedes 190E</h2>
+              <div className="space-y-4 text-sm leading-7 text-off/80">
+                <p>Edmilson é o mecanista especialista em Mercedes da 747 Garage. Acompanha diagnóstico, restauração, revisão e preparação técnica de cada carro.</p>
+                <p>É com ele que clientes conversam sobre qualquer assunto da garagem: avaliação, dúvidas técnicas, orientação de compra e planejamento.</p>
+                <p className="text-base font-medium text-off/90">Atendimento direto, técnico e transparente.</p>
               </div>
             </div>
 
-            <figcaption className="border-t border-off/10 bg-black/35 px-5 py-4 text-xs uppercase tracking-[0.28em] text-off/55">
-              Atendimento direto com o especialista
-            </figcaption>
-          </figure>
+            <figure className="reveal-right overflow-hidden rounded-[2.5rem] border border-off/10 bg-[#111111]/90 shadow-[0_20px_60px_rgba(0,0,0,0.4)]" data-parallax-image="0.25">
+              <div className="relative aspect-[3/4]">
+                <img
+                  src="/sobre/1.jpeg"
+                  alt="Edmilson, especialista Mercedes da 747 Garage"
+                  className="h-full w-full object-cover object-center"
+                />
+                <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.05)_0%,rgba(0,0,0,0.25)_100%)]" />
+                <div className="absolute inset-x-5 bottom-5 rounded-[1.6rem] border border-off/15 bg-black/60 px-5 py-4 backdrop-blur-md">
+                  <p className="text-[0.65rem] uppercase tracking-[0.35em] text-gold/85">Especialista</p>
+                  <p className="mt-2 text-sm font-medium text-off/95">Fale direto com Edmilson</p>
+                </div>
+              </div>
+            </figure>
+          </div>
         </div>
       </section>
 
       <section id="contato" className="relative scroll-mt-36 border-t border-off/10 py-24 lg:py-28">
         <div className="mx-auto max-w-6xl px-6">
-          <div className="mx-auto max-w-2xl text-center">
+          <div className="mx-auto max-w-2xl text-center mb-16">
             <p className="text-xs uppercase tracking-[0.4em] text-gold/80">Contato</p>
             <h2 className="mt-4 text-3xl font-semibold tracking-tight text-off sm:text-4xl">
               Fale direto com a garagem.
@@ -215,18 +511,89 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="mt-10 grid gap-4 lg:grid-cols-3">
-            <div className="rounded-[2rem] border border-off/10 bg-white/5 p-6 text-center backdrop-blur-sm">
-              <p className="text-xs uppercase tracking-[0.35em] text-off/45">WhatsApp</p>
-              <p className="mt-4 text-lg font-medium text-off/90">+55 11 93010-8649</p>
+          {/* Carrossel em mobile, grid em desktop */}
+          <div className="relative">
+            {/* Desktop: Grid com 3 colunas */}
+            <div className="hidden lg:grid gap-4 grid-cols-3">
+              {contactInfo.map((info, idx) => (
+                <div
+                  key={idx}
+                  className="rounded-[2rem] border border-off/10 bg-white/5 p-8 text-center backdrop-blur-sm hover:border-gold/30 hover:bg-white/8 transition-all duration-300 card-hover" data-parallax="0.2"
+                >
+                  <p className="text-xs uppercase tracking-[0.35em] text-off/45">{info.label}</p>
+                  <p className="mt-6 text-2xl font-medium text-off/90">{info.title}</p>
+                </div>
+              ))}
             </div>
-            <div className="rounded-[2rem] border border-off/10 bg-white/5 p-6 text-center backdrop-blur-sm">
-              <p className="text-xs uppercase tracking-[0.35em] text-off/45">Endereço</p>
-              <p className="mt-4 text-lg font-medium text-off/90">Rua Antonio Viana, 747</p>
-            </div>
-            <div className="rounded-[2rem] border border-off/10 bg-white/5 p-6 text-center backdrop-blur-sm">
-              <p className="text-xs uppercase tracking-[0.35em] text-off/45">Horário</p>
-              <p className="mt-4 text-lg font-medium text-off/90">Seg–Sex 08h às 16h</p>
+
+            {/* Mobile: Carrossel */}
+            <div className="lg:hidden relative">
+              <style>{`
+                @keyframes carouselSlide {
+                  from {
+                    opacity: 0;
+                    transform: translateX(20px);
+                  }
+                  to {
+                    opacity: 1;
+                    transform: translateX(0);
+                  }
+                }
+
+                .carousel-item {
+                  animation: carouselSlide 0.5s ease-out forwards;
+                }
+              `}</style>
+
+              <div className="overflow-hidden rounded-[2.5rem]">
+                <div className="relative">
+                  <div className="carousel-item">
+                    <div className="rounded-[2.5rem] border border-off/10 bg-white/5 p-10 text-center backdrop-blur-sm">
+                      <p className="text-xs uppercase tracking-[0.35em] text-off/45">{contactInfo[currentContactIndex].label}</p>
+                      <p className="mt-8 text-3xl font-bold text-off/90">{contactInfo[currentContactIndex].title}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Navigation buttons */}
+              <div className="mt-8 flex items-center justify-between">
+                <button
+                  onClick={prevContact}
+                  className="flex h-12 w-12 items-center justify-center rounded-full border border-off/20 bg-off/5 text-off transition hover:border-gold/40 hover:bg-off/10 hover:-translate-y-0.5"
+                  aria-label="Anterior"
+                >
+                  <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                  </svg>
+                </button>
+
+                {/* Indicators */}
+                <div className="flex items-center gap-2">
+                  {contactInfo.map((_, idx) => (
+                    <button
+                      key={idx}
+                      onClick={() => setCurrentContactIndex(idx)}
+                      className={`h-2 rounded-full transition-all duration-300 ${
+                        idx === currentContactIndex
+                          ? "w-8 bg-gold"
+                          : "w-2 bg-off/25 hover:bg-off/40"
+                      }`}
+                      aria-label={`Ir para slide ${idx + 1}`}
+                    />
+                  ))}
+                </div>
+
+                <button
+                  onClick={nextContact}
+                  className="flex h-12 w-12 items-center justify-center rounded-full border border-off/20 bg-off/5 text-off transition hover:border-gold/40 hover:bg-off/10 hover:-translate-y-0.5"
+                  aria-label="Próximo"
+                >
+                  <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </button>
+              </div>
             </div>
           </div>
         </div>
