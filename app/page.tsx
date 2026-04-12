@@ -3,6 +3,8 @@
 
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
+import AdaptiveImage from "../components/AdaptiveImage";
+
 
 export default function Home() {
   const heroHighlights = [
@@ -22,38 +24,8 @@ export default function Home() {
       image: "/historia/01-primeiros-carros-2019.jpeg",
       alt: "Primeiro carro à venda na rua em 2019, antes da garagem",
     },
-    {
-      year: "2020",
-      title: "Antes da garagem",
-      description: "Iniciava-se a fundação do espaço que viria a consolidar a 747 Garage como referência em preservação de veículos premium.",
-      people: "",
-      image: "/historia/02-construcao-inicio-2020.jpeg",
-      alt: "Início da construção da garagem em 2020",
-    },
-    {
-      year: "2020",
-      title: "Medições da cobertura",
-      description: "Précis levantamentos estruturais para a cobertura, garantindo ambiente controlado que protegesse as coleções Mercedes de intempéries.",
-      people: "",
-      image: "/historia/03-medicoes-cobertura-2020.jpeg",
-      alt: "Medições para a cobertura da garagem em 2020",
-    },
-    {
-      year: "2020",
-      title: "Alinhamento pronto",
-      description: "Estacas sendo posicionadas para dar continuidade estrutural ao projeto. Momento crítico da construção que estabeleceria as bases para a garagem de nossos sonhos.",
-      people: "Jalile, esposa de Edmilson, acompanhando o progresso",
-      image: "/historia/04-alinhamento-estacas-2020.jpeg",
-      alt: "Alinhamento e instalação de estacas em 2020, com Jalile",
-    },
-    {
-      year: "2020",
-      title: "Desenhos e projetos",
-      description: "O projeto materializado em papel: visão técnica que transformaria o espaço em um templo da curadoria Mercedes. Engenharia e paixão em harmonia.",
-      people: "Projeto de Eliton, sócio de Edmilson",
-      image: "/historia/05-desenhos-projetos-2020.jpeg",
-      alt: "Projeto em rascunho criado por Eliton em 2020",
-    },
+
+
     {
       year: "2021",
       title: "Etapas da construção",
@@ -91,6 +63,11 @@ export default function Home() {
   ];
 
   const [currentContactIndex, setCurrentContactIndex] = useState(0);
+  const [orientations, setOrientations] = useState<Record<number, 'portrait' | 'landscape' | 'square'>>({});
+
+  const setOrientationAt = (idx: number, orientation: 'portrait' | 'landscape' | 'square') => {
+    setOrientations((prev) => (prev[idx] === orientation ? prev : { ...prev, [idx]: orientation }));
+  };
 
   const nextContact = () => {
     setCurrentContactIndex((prev) => (prev + 1) % contactInfo.length);
@@ -372,14 +349,14 @@ export default function Home() {
           <div className="grid gap-10 lg:grid-cols-[1fr_1.2fr] lg:items-start mb-20">
             <figure className="reveal-left overflow-hidden rounded-[2.5rem] border border-off/10 bg-[#111111]/90 shadow-[0_20px_60px_rgba(0,0,0,0.4)]" data-parallax-image="0.3">
               <div className="relative aspect-[3/4]">
-                <img
-                  src="/sobre/2.jpeg"
-                  alt="Edmilson e Eliton, sócios da 747 Garage"
-                  className="h-full w-full bg-black object-cover object-center"
-                />
+                <AdaptiveImage
+                          src="/sobre/2.jpeg"
+                          alt="Edmilson e Eliton, sócios da 747 Garage"
+                          className="absolute inset-0 w-full h-full object-contain object-left"
+                        />
                 <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.05)_0%,rgba(0,0,0,0.25)_100%)]" />
                 <div className="absolute inset-x-5 bottom-5 rounded-[1.6rem] border border-off/15 bg-black/60 px-5 py-4 backdrop-blur-md">
-                  <p className="text-[0.65rem] uppercase tracking-[0.35em] text-gold/85">Osmilson & Eliton</p>
+                  <p className="text-[0.65rem] uppercase tracking-[0.35em] text-gold/85">Edmilson & Eliton</p>
                   <p className="mt-2 text-sm font-medium text-off/95">Precisão não se improvisa</p>
                 </div>
               </div>
@@ -442,26 +419,46 @@ export default function Home() {
               {historyTimeline.map((item, idx) => (
                 <article
                   key={`${item.year}-${item.title}`}
-                  className="history-card grid items-start gap-6 overflow-hidden rounded-[2.2rem] border border-off/12 bg-[linear-gradient(135deg,rgba(20,20,20,0.8)_0%,rgba(10,10,10,0.6)_100%)] p-6 shadow-[0_20px_60px_rgba(0,0,0,0.3)] lg:grid-cols-[1.1fr_0.9fr] lg:p-7 hover:border-gold/25 transition-all duration-500" data-parallax="0.25"
+                  className={`history-card grid items-stretch gap-6 overflow-hidden rounded-[2.2rem] border border-off/12 bg-gradient-to-b from-[#141414]/80 to-[#0b0b0b]/90 ${orientations[idx] === 'portrait' ? 'lg:grid-cols-[360px_1fr] lg:p-0' : 'lg:grid-cols-[1.6fr_1fr] lg:p-0'} hover:border-gold/25 transition-all duration-500`}
+                  data-parallax="0.25"
                 >
-                  <div className="overflow-hidden rounded-[1.6rem] border border-off/15 bg-[linear-gradient(180deg,rgba(16,16,16,0.9)_0%,rgba(8,8,8,0.75)_100%)]">
-                    <div className="relative flex items-center justify-center p-2 lg:p-3">
-                      <img 
-                        src={item.image} 
-                        alt={item.alt} 
-                        className="h-auto max-h-[34rem] w-full rounded-[1.2rem] object-contain object-center hover:scale-[1.02] transition-transform duration-700" 
-                        data-parallax-image="0.3"
-                      />
-                      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,transparent_0%,rgba(0,0,0,0.12)_100%)]" />
-                    </div>
+                  {/* Image block: cinematic crop using intrinsic aspect ratio */}
+                  {/* Image block: adaptive layout based on orientation */}
+                  <div className="relative overflow-hidden lg:rounded-l-[2.2rem]">
+                    {orientations[idx] === 'portrait' ? (
+                      <div className="flex h-full w-full">
+                        <div className="relative w-full lg:w-[360px] h-full flex-shrink-0">
+                          <AdaptiveImage
+                            src={item.image}
+                            alt={item.alt}
+                            onOrientation={(o) => setOrientationAt(idx, o)}
+                            className="absolute inset-0 w-full h-full object-contain object-left transition-transform duration-700"
+                          />
+                        </div>
+                        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+                      </div>
+                    ) : (
+                      <div className="w-full h-0 pb-[56%] lg:pb-0 lg:h-full">
+                        <AdaptiveImage
+                          src={item.image}
+                          alt={item.alt}
+                          onOrientation={(o) => setOrientationAt(idx, o)}
+                          className="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-700 transform hover:scale-105"
+                        />
+                        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+                      </div>
+                    )}
                   </div>
 
-                  <div className="self-start rounded-[1.6rem] border border-off/12 bg-[linear-gradient(180deg,rgba(0,0,0,0.3)_0%,rgba(0,0,0,0.1)_100%)] p-6 backdrop-blur-sm">
-                    <div>
+                  {/* Text block: compact, overlaps image slightly on large screens */}
+                  <div className={`self-center bg-black/30 lg:bg-transparent lg:backdrop-blur-sm p-6 lg:p-8 lg:-ml-12 ${orientations[idx] === 'portrait' ? 'lg:self-stretch lg:flex lg:items-stretch' : 'lg:self-center'}`}>
+                    <div className={`${orientations[idx] === 'portrait' ? 'h-full flex flex-col justify-between' : 'max-w-[36rem]'}`}>
                       <p className="text-xs uppercase tracking-[0.4em] text-gold/85 font-bold">{item.year}</p>
-                      <h3 className="mt-4 text-xl font-bold tracking-tight text-off lg:text-2xl">{item.title}</h3>
-                      <p className="mt-4 text-sm leading-7 text-off/80 lg:text-base">{item.description}</p>
-                      {item.people && <p className="mt-3 text-xs uppercase tracking-[0.25em] text-off/55 font-medium">{item.people}</p>}
+                      <h3 className="mt-4 text-2xl font-bold tracking-tight text-off">{item.title}</h3>
+                      <p className={`${orientations[idx] === 'portrait' ? 'flex-1 mt-4 text-sm leading-7 text-off/80' : 'mt-4 text-sm leading-7 text-off/80'}`}>{item.description}</p>
+                      {item.people && (
+                        <p className="mt-3 text-xs uppercase tracking-[0.25em] text-off/55 font-medium">{item.people}</p>
+                      )}
                     </div>
                   </div>
                 </article>
@@ -483,7 +480,7 @@ export default function Home() {
 
             <figure className="reveal-right overflow-hidden rounded-[2.5rem] border border-off/10 bg-[#111111]/90 shadow-[0_20px_60px_rgba(0,0,0,0.4)]" data-parallax-image="0.25">
               <div className="relative aspect-[3/4]">
-                <img
+                <AdaptiveImage
                   src="/sobre/1.jpeg"
                   alt="Edmilson, especialista Mercedes da 747 Garage"
                   className="h-full w-full object-cover object-center"

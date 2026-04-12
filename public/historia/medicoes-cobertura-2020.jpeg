@@ -1,0 +1,6 @@
+PLACEHOLDER: Replace this file with the image located at:
+C:\Users\barro\AppData\Roaming\Code\User\globalStorage\github.copilot-chat\copilot-cli-images\1775955207916-lkn35g5q.png
+
+Because the environment cannot copy binary attachments directly, drop the actual image file here (public/historia/medicoes-cobertura-2020.jpeg) or run the following locally:
+
+cp "C:\Users\barro\AppData\Roaming\Code\User\globalStorage\github.copilot-chat\copilot-cli-images\1775955207916-lkn35g5q.png" public/historia/medicoes-cobertura-2020.jpeg
