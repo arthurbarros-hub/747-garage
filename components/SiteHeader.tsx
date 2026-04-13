@@ -11,6 +11,7 @@ const topNavItems = [
 const sideMenuItems = [
   { href: "/vehicles", label: "Veículos" },
   { href: "/pecas", label: "Peças" },
+  { href: "/servicos", label: "Serviços" },
   { href: "/#orcamento", label: "Orçamento" },
 ];
 

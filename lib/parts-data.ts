@@ -338,23 +338,4 @@ export const parts: Part[] = [
     badges: ["Comando eletrico", "Interior"],
     images: ["/pecas/botao-vidro-eletrico-w201.jpeg"],
   },
-  {
-    id: "para-choque-body-kit",
-    title: "Body Kit Mercedes W201",
-    category: "Lataria",
-    condition: "Usado",
-    price: "R$ 2.450",
-    description:
-      "Body kit Mercedes W201 com para-choque e componentes de acabamento, ideal para projeto visual esportivo com identidade de epoca.",
-    notes: "Conjunto com fotos do kit completo e do carro com o body kit montado.",
-    badges: ["Body kit", "Kit completo"],
-    images: [
-      "/pecas/body-kit-w201-instalacao-detalhe-lateral.jpeg",
-      "/pecas/para-choque-body-kit.jpeg",
-      "/pecas/body-kit-w201-kit-completo.jpeg",
-      "/pecas/body-kit-w201-carro-completo.jpeg",
-      "/pecas/body-kit-w201-instalacao-frente.jpeg",
-      "/pecas/body-kit-w201-instalacao-lateral.jpeg",
-    ],
-  },
 ];

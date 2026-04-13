@@ -21,8 +21,8 @@ export default function Home() {
       title: "Primeiros carros e serviços",
       description: "Os primeiros carros de coleção Mercedes eram fotografados em local externo, onde a 747 Garage armazenava suas seleções premium antes de contar com estrutura própria.",
       people: "",
-      image: "/historia/01-primeiros-carros-2019.jpeg",
-      alt: "Primeiro carro à venda na rua em 2019, antes da garagem",
+      image: "/historia/WhatsApp%20Image%202026-04-10%20at%2021.55.07.jpeg",
+      alt: "Mercedes clássica em área externa, antes da garagem",
     },
 
 
@@ -35,7 +35,7 @@ export default function Home() {
       alt: "Estrutura da garagem pronta, preparação do piso em 2021",
     },
     {
-      year: "2024",
+      year: "2026",
       title: "Hoje — resultado atual",
       description: "A 747 Garage consolidada: espaço premium onde coleções Mercedes repousam com segurança, iluminação natural e o cuidado que colecionadores exigem.",
       people: "",
@@ -181,7 +181,8 @@ export default function Home() {
 
         <p className="mt-7 max-w-3xl text-sm leading-7 text-off/72 sm:mt-8 sm:text-lg sm:leading-8">
           Precisão alemã, curadoria brasileira. Um espaço dedicado a Mercedes clássicas dos anos 80 e 90,
-          apresentado com uma estética limpa, simétrica e mais exclusiva para a marca.
+          apresentado com uma estética limpa, simétrica e mais exclusiva para a marca, com veículos, peças e
+          serviços especializados.
         </p>
 
         <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
@@ -190,6 +191,13 @@ export default function Home() {
             className="inline-flex items-center justify-center rounded-full bg-off px-6 py-3.5 text-sm font-semibold text-ink transition duration-300 hover:-translate-y-0.5 hover:bg-[#fff6db] hover:shadow-[0_18px_50px_rgba(198,167,94,0.22)]"
           >
             Ver veículos disponíveis
+          </Link>
+
+          <Link
+            href="/servicos"
+            className="inline-flex items-center justify-center rounded-full border border-gold/35 bg-gold/10 px-6 py-3.5 text-sm font-semibold text-gold transition duration-300 hover:-translate-y-0.5 hover:border-gold/60 hover:bg-gold/15"
+          >
+            Explorar serviços
           </Link>
 
           <Link
@@ -422,8 +430,6 @@ export default function Home() {
                   className={`history-card grid items-stretch gap-6 overflow-hidden rounded-[2.2rem] border border-off/12 bg-gradient-to-b from-[#141414]/80 to-[#0b0b0b]/90 ${orientations[idx] === 'portrait' ? 'lg:grid-cols-[360px_1fr] lg:p-0' : 'lg:grid-cols-[1.6fr_1fr] lg:p-0'} hover:border-gold/25 transition-all duration-500`}
                   data-parallax="0.25"
                 >
-                  {/* Image block: cinematic crop using intrinsic aspect ratio */}
-                  {/* Image block: adaptive layout based on orientation */}
                   <div className="relative overflow-hidden lg:rounded-l-[2.2rem]">
                     {orientations[idx] === 'portrait' ? (
                       <div className="flex h-full w-full">
@@ -621,6 +627,12 @@ export default function Home() {
                 className="inline-flex items-center justify-center rounded-full border border-off/20 bg-off/5 px-6 py-3.5 text-sm font-semibold text-off transition hover:-translate-y-0.5 hover:bg-off/10"
               >
                 Ver estoque
+              </Link>
+              <Link
+                href="/servicos"
+                className="inline-flex items-center justify-center rounded-full border border-off/20 bg-off/5 px-6 py-3.5 text-sm font-semibold text-off transition hover:-translate-y-0.5 hover:bg-off/10"
+              >
+                Ver serviços
               </Link>
             </div>
           </div>
