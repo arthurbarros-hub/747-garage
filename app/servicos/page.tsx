@@ -5,6 +5,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { services } from "@/lib/services-data";
 
+function isPriceOnlyLabel(value: string) {
+  const trimmed = value.trim().toLowerCase();
+  return /^(r\$\s?\d[\d.\s,]*)$/.test(trimmed);
+}
+
 export default function ServicosPage() {
   const initialSlides = useMemo(
     () => Object.fromEntries(services.map((service) => [service.id, 0])) as Record<string, number>,
@@ -53,6 +58,7 @@ export default function ServicosPage() {
         <div className="grid gap-10 md:grid-cols-2 xl:grid-cols-3">
           {services.map((service) => {
             const current = activeSlide[service.id] ?? 0;
+            const isPriceOnly = isPriceOnlyLabel(service.startingPrice);
 
             return (
               <article
@@ -119,7 +125,13 @@ export default function ServicosPage() {
                       </p>
                     </div>
 
-                    <span className="w-full rounded-2xl border border-gold/30 bg-[#f3e6c1] px-4 py-2 text-center text-sm font-black tracking-tight text-ink shadow-[0_10px_35px_rgba(198,167,94,0.25)] sm:min-w-[9.8rem] sm:w-auto">
+                    <span
+                      className={`w-full rounded-2xl border border-gold/30 bg-[#f3e6c1] px-4 py-2 text-center font-black tracking-tight text-ink shadow-[0_10px_35px_rgba(198,167,94,0.25)] sm:w-auto ${
+                        isPriceOnly
+                          ? "text-lg sm:min-w-[9.4rem] sm:text-xl"
+                          : "text-sm sm:min-w-[9.8rem]"
+                      }`}
+                    >
                       {service.startingPrice}
                     </span>
                   </div>

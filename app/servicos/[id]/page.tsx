@@ -3,6 +3,11 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { services } from "@/lib/services-data";
 
+function isPriceOnlyLabel(value: string) {
+  const trimmed = value.trim().toLowerCase();
+  return /^(r\$\s?\d[\d.\s,]*)$/.test(trimmed);
+}
+
 type ServiceDetailsPageProps = {
   params: Promise<{
     id: string;
@@ -20,6 +25,7 @@ export default async function ServiceDetailsPage({ params }: ServiceDetailsPageP
   const message = encodeURIComponent(
     `Olá! Tenho interesse no serviço: ${service.title} (${service.startingPrice}). Pode me passar mais detalhes?`
   );
+  const isPriceOnly = isPriceOnlyLabel(service.startingPrice);
 
   return (
     <main className="relative min-h-screen overflow-hidden bg-ink text-off">
@@ -65,7 +71,11 @@ export default async function ServiceDetailsPage({ params }: ServiceDetailsPageP
             </div>
           )}
 
-          <div className="mt-6 inline-flex rounded-2xl border border-gold/30 bg-[#f3e6c1] px-5 py-2.5 text-xl font-black tracking-tight text-ink sm:text-2xl">
+          <div
+            className={`mt-6 inline-flex rounded-2xl border border-gold/30 bg-[#f3e6c1] px-5 py-2.5 font-black tracking-tight text-ink ${
+              isPriceOnly ? "text-2xl sm:text-3xl" : "text-xl sm:text-2xl"
+            }`}
+          >
             {service.startingPrice}
           </div>
 

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { parts } from "@/lib/parts-data";
@@ -69,15 +69,16 @@ export default function PecasPage() {
   }, [filteredParts, sortBy]);
 
   const totalPages = Math.max(1, Math.ceil(sortedParts.length / ITEMS_PER_PAGE));
+  const currentPageClamped = Math.min(currentPage, totalPages);
 
   const paginatedParts = useMemo(() => {
-    const start = (currentPage - 1) * ITEMS_PER_PAGE;
+    const start = (currentPageClamped - 1) * ITEMS_PER_PAGE;
     return sortedParts.slice(start, start + ITEMS_PER_PAGE);
-  }, [sortedParts, currentPage]);
+  }, [sortedParts, currentPageClamped]);
 
   const visiblePages = useMemo(() => {
     const pages: number[] = [];
-    const start = Math.max(1, currentPage - 2);
+    const start = Math.max(1, currentPageClamped - 2);
     const end = Math.min(totalPages, start + 4);
 
     for (let page = start; page <= end; page += 1) {
@@ -85,17 +86,7 @@ export default function PecasPage() {
     }
 
     return pages;
-  }, [currentPage, totalPages]);
-
-  useEffect(() => {
-    setCurrentPage(1);
-  }, [search, selectedCategory, sortBy]);
-
-  useEffect(() => {
-    if (currentPage > totalPages) {
-      setCurrentPage(totalPages);
-    }
-  }, [currentPage, totalPages]);
+  }, [currentPageClamped, totalPages]);
 
   function goTo(partId: string, index: number) {
     setActiveSlide((prev) => ({ ...prev, [partId]: index }));
@@ -140,7 +131,10 @@ export default function PecasPage() {
               <span className="mb-2 block text-xs uppercase tracking-[0.25em] text-off/55">Buscar peça</span>
               <input
                 value={search}
-                onChange={(event) => setSearch(event.target.value)}
+                onChange={(event) => {
+                  setSearch(event.target.value);
+                  setCurrentPage(1);
+                }}
                 placeholder="Ex.: lanterna, painel, roda..."
                 className="w-full rounded-2xl border border-off/15 bg-off/5 px-4 py-3 text-sm text-off outline-none transition placeholder:text-off/45 focus:border-gold/35"
               />
@@ -153,7 +147,10 @@ export default function PecasPage() {
                   <button
                     key={category}
                     type="button"
-                    onClick={() => setSelectedCategory(category)}
+                    onClick={() => {
+                      setSelectedCategory(category);
+                      setCurrentPage(1);
+                    }}
                     className={`rounded-full border px-4 py-2 text-xs font-semibold uppercase tracking-[0.14em] transition ${
                       selectedCategory === category
                         ? "border-gold/45 bg-gold/15 text-gold"
@@ -170,7 +167,10 @@ export default function PecasPage() {
               <span className="mb-2 block text-xs uppercase tracking-[0.25em] text-off/55">Ordenar por</span>
               <select
                 value={sortBy}
-                onChange={(event) => setSortBy(event.target.value)}
+                onChange={(event) => {
+                  setSortBy(event.target.value);
+                  setCurrentPage(1);
+                }}
                 className="w-full rounded-2xl border border-off/15 bg-off/5 px-4 py-3 text-sm text-off outline-none transition focus:border-gold/35"
               >
                 <option value="relevancia">Relevância</option>
@@ -184,7 +184,7 @@ export default function PecasPage() {
           </div>
 
           <p className="mt-4 text-xs text-off/60">
-            Mostrando {paginatedParts.length} de {sortedParts.length} peças (página {currentPage} de {totalPages}).
+            Mostrando {paginatedParts.length} de {sortedParts.length} peças (página {currentPageClamped} de {totalPages}).
           </p>
         </div>
 
@@ -299,8 +299,8 @@ export default function PecasPage() {
           <div className="mt-10 flex flex-wrap items-center justify-center gap-2">
             <button
               type="button"
-              onClick={() => setCurrentPage((prev) => Math.max(1, prev - 1))}
-              disabled={currentPage === 1}
+              onClick={() => setCurrentPage(Math.max(1, currentPageClamped - 1))}
+              disabled={currentPageClamped === 1}
               className="rounded-full border border-off/20 bg-off/5 px-4 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-off transition hover:bg-off/10 disabled:cursor-not-allowed disabled:opacity-40"
             >
               Anterior
@@ -312,7 +312,7 @@ export default function PecasPage() {
                 type="button"
                 onClick={() => setCurrentPage(page)}
                 className={`rounded-full border px-4 py-2 text-xs font-semibold uppercase tracking-[0.14em] transition ${
-                  page === currentPage
+                  page === currentPageClamped
                     ? "border-gold/45 bg-gold/15 text-gold"
                     : "border-off/20 bg-off/5 text-off hover:bg-off/10"
                 }`}
@@ -323,8 +323,8 @@ export default function PecasPage() {
 
             <button
               type="button"
-              onClick={() => setCurrentPage((prev) => Math.min(totalPages, prev + 1))}
-              disabled={currentPage === totalPages}
+              onClick={() => setCurrentPage(Math.min(totalPages, currentPageClamped + 1))}
+              disabled={currentPageClamped === totalPages}
               className="rounded-full border border-off/20 bg-off/5 px-4 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-off transition hover:bg-off/10 disabled:cursor-not-allowed disabled:opacity-40"
             >
               Próxima

@@ -73,7 +73,7 @@ export const services: Service[] = [
     notes: "Recomendado para quem está iniciando restauração ou upgrade completo.",
     highlights: ["Plano por etapas", "Direcionamento de peças", "Decisão com mais segurança"],
     images: [
-      "/historia/sketch-plan-2026-04-11.jpeg",
+      "/historia/sketch-plan-2026-04-11.png",
       "/historia/03-medicoes-cobertura-2020.jpeg",
       "/historia/04-alinhamento-estacas-2020.jpeg",
     ],
