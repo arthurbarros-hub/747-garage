@@ -186,7 +186,6 @@
 		animation: fadeInUpReveal 0.8s ease-out forwards;
 	}
 
-	/* Parallax container support */
 	[data-parallax],
 	[data-parallax-image] {
 		will-change: transform;
