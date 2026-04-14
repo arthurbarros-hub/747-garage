@@ -410,7 +410,14 @@ export default function Home() {
                 <h3 className="mt-2 font-semibold text-off">Inauguração</h3>
               </div>
               <div className="reveal-up stagger-4 card-hover rounded-[1.6rem] border border-gold/20 bg-[linear-gradient(135deg,rgba(198,167,94,0.08)_0%,rgba(198,167,94,0.03)_100%)] p-5 text-sm sm:col-span-2" data-parallax="0.28">
-                <p className="text-xs uppercase tracking-[0.3em] text-gold/85 font-bold">Naiorezende</p>
+                <a
+                  href="https://www.instagram.com/naiorezende/"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-xs uppercase tracking-[0.3em] text-gold/85 font-bold underline underline-offset-4 decoration-gold/70 transition hover:text-gold"
+                >
+                  Naiorezende
+                </a>
                 <h3 className="mt-2 font-semibold text-off">Primeiro grande reconhecimento</h3>
               </div>
               <div className="reveal-up stagger-5 card-hover rounded-[1.6rem] border border-gold/20 bg-[linear-gradient(135deg,rgba(198,167,94,0.08)_0%,rgba(198,167,94,0.03)_100%)] p-5 text-sm" data-parallax="0.32">
