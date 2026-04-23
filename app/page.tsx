@@ -18,29 +18,59 @@ export default function Home() {
   const historyTimeline = [
     {
       year: "2019",
-      title: "Primeiros carros e serviços",
-      description: "Os primeiros carros de coleção Mercedes eram fotografados em local externo, onde a 747 Garage armazenava suas seleções premium antes de contar com estrutura própria.",
+      title: "Terreno inicial",
+      description: "O espaço ainda estava vazio, marcado apenas pelas primeiras estruturas que começavam a definir o projeto. Entre ajustes, medições e decisões iniciais, cada detalhe foi pensado com cuidado, respeitando os limites do terreno e observando o melhor uso possível de cada área. Mesmo simples, o ambiente já carregava a intenção de algo maior, com cada etapa sendo construída com precisão e propósito.\n\nFoi nesse cenário que a 747 Garage começou a nascer, transformando uma ideia em realidade concreta. Cada marca no solo, cada estrutura levantada e cada escolha feita refletiam um planejamento cuidadoso, guiado por uma visão clara do que aquele espaço se tornaria. Mais do que uma construção física, ali se iniciava um projeto com identidade própria.\n\nCom o tempo, o que era apenas base passou a representar direção, consistência e evolução. Esse início, ainda bruto e essencial, foi fundamental para estabelecer os pilares de um projeto sólido, onde técnica, atenção aos detalhes e paixão pelo processo caminham lado a lado desde o primeiro momento.",
+      note: "Primeiros alinhamentos do terreno, acesso e marcações da base.",
       people: "",
-      image: "/historia/WhatsApp%20Image%202026-04-10%20at%2021.55.07.jpeg",
-      alt: "Mercedes clássica em área externa, antes da garagem",
+      image: "/historia/2019-terreno-inicial.jpeg",
+      alt: "Terreno inicial da garagem com marcações de base",
     },
 
+    {
+      year: "2020",
+      title: "Planta da garagem",
+      description: "A primeira organização do espaço começou no desenho, definindo vagas, circulação e áreas de apoio. Esse momento foi importante para transformar a ideia em direção prática, ajustando o que caberia melhor no dia a dia da garagem.",
+      note: "Projeto de circulação, vagas e apoio desenhado antes da execução.",
+      people: "",
+      image: "/historia/2020-planta-projeto.jpeg",
+      alt: "Planta desenhada com divisão de vagas e apoio",
+    },
 
+    {
+      year: "2020",
+      title: "Esboço de implantação",
+      description: "O esboço complementar ajudou a ajustar medidas e posição dos carros antes da execução. Foi a etapa em que o projeto ganhou mais clareza, confirmando proporções, circulação e a lógica visual do espaço.",
+      note: "Ajuste final de medidas, posição dos carros e leitura do conjunto.",
+      people: "",
+      image: "/historia/2020-projeto-esboco.jpeg",
+      alt: "Esboço de implantação da garagem com vagas e circulação",
+    },
     {
       year: "2021",
-      title: "Etapas da construção",
-      description: "Estrutura tomando forma. O solo preparado e nivelado para receber os pisos que abrigariam os veículos premium com a dignidade que merecem.",
+      title: "Evolução da estrutura",
+      description: "A cobertura e a organização interna passaram a dar forma ao ambiente onde os carros começaram a se acomodar. A partir daí, o espaço deixou de ser apenas um plano e passou a funcionar como uma garagem de verdade, com presença e rotina.",
+      note: "Cobertura, organização interna e rotina já começando a existir.",
       people: "",
-      image: "/historia/06-etapas-construcao-2021.jpeg",
-      alt: "Estrutura da garagem pronta, preparação do piso em 2021",
+      image: "/historia/2021-evolucao-garagem.jpeg",
+      alt: "Estrutura da garagem em evolução com cobertura e carros",
     },
     {
-      year: "2026",
-      title: "Hoje — resultado atual",
-      description: "A 747 Garage consolidada: espaço premium onde coleções Mercedes repousam com segurança, iluminação natural e o cuidado que colecionadores exigem.",
+      year: "2024",
+      title: "Resultado atual - frente",
+      description: "Hoje o conjunto já mostra a garagem em uso, com os veículos organizados sob a estrutura principal. A imagem resume o resultado de um processo construído com método, cuidado visual e atenção ao modo como cada carro é recebido e apresentado.",
+      note: "Espaço em funcionamento, com organização e apresentação premium.",
       people: "",
-      image: "/historia/07-resultado-atual-2024.jpeg",
-      alt: "Garagem 747 Garage completa com carros e infraestrutura em 2024",
+      image: "/historia/2024-garagem-atual-frente.jpeg",
+      alt: "Garagem atual vista de frente com vários carros sob a cobertura",
+    },
+    {
+      year: "2024",
+      title: "Resultado atual - lateral",
+      description: "Outro ângulo do cenário atual revela a evolução concreta do espaço, agora ocupado e funcional, refletindo tudo o que foi planejado desde o início. A estrutura que antes era apenas base hoje sustenta uma operação ativa, com veículos organizados lado a lado, evidenciando o cuidado com cada detalhe e a valorização do conjunto. A disposição dos carros mostra não apenas armazenamento, mas um fluxo pensado para facilitar o acesso, a circulação e o manuseio com precisão.\n\nA cobertura, os pilares e o alinhamento reforçam a leitura de um ambiente construído com propósito, onde cada elemento cumpre uma função clara dentro do dia a dia da garagem. A presença das Mercedes clássicas no local dá vida ao projeto, conectando o espaço físico à identidade que sempre guiou sua criação. Aqui, técnica e estética caminham juntas, criando um ambiente que respeita o passado dos veículos enquanto oferece estrutura adequada para sua preservação.\n\nMais do que um ponto de apoio, o espaço se consolida como parte essencial da operação, traduzindo em forma física a consistência, organização e evolução da 747 Garage. O que antes era apenas um terreno em definição agora se apresenta como um ambiente ativo, funcional e alinhado com a proposta original do projeto.",
+      note: "Visão lateral do conjunto, mostrando escala, fluxo e ocupação real.",
+      people: "",
+      image: "/historia/2024-garagem-atual-lateral.jpeg",
+      alt: "Garagem atual vista pela lateral com carros sob a cobertura",
     },
   ];
 
@@ -388,7 +418,7 @@ export default function Home() {
 
               <div className="reveal-up stagger-4 card-hover rounded-[2rem] border border-gold/20 bg-[linear-gradient(135deg,rgba(198,167,94,0.08)_0%,rgba(198,167,94,0.03)_100%)] p-6 backdrop-blur-sm" data-parallax="0.35">
                 <p className="text-xs uppercase tracking-[0.35em] text-gold/80">Nossa missão</p>
-                <p className="mt-4 text-sm leading-7 text-off/82">Seguir construindo com precisão. Aprimorar cada etapa, ajustar cada detalhe e manter um nível que não depende de comparação — apenas de continuidade.</p>
+                <p className="mt-4 text-sm leading-7 text-off/82">Apoiar, esclarecer, orientar e indicar com atenção real em cada etapa. Nosso papel é ajudar as pessoas a tomar a melhor decisão, com atendimento diferenciado e acompanhamento próximo.</p>
               </div>
             </div>
           </div>
@@ -429,34 +459,34 @@ export default function Home() {
 
           {/* Visual timeline - fotos da história */}
           <div className="reveal-up">
-            <h2 className="text-2xl font-semibold tracking-tight text-off lg:text-3xl mb-12" data-parallax="0.15">A construção, visual</h2>
+            <h2 className="text-2xl font-semibold tracking-tight text-off lg:text-3xl mb-12" data-parallax="0.15">Do terreno ao resultado</h2>
             <div className="space-y-6">
               {historyTimeline.map((item, idx) => (
                 <article
                   key={`${item.year}-${item.title}`}
-                  className={`history-card grid items-stretch gap-6 overflow-hidden rounded-[2.2rem] border border-off/12 bg-gradient-to-b from-[#141414]/80 to-[#0b0b0b]/90 ${orientations[idx] === 'portrait' ? 'lg:grid-cols-[360px_1fr] lg:p-0' : 'lg:grid-cols-[1.6fr_1fr] lg:p-0'} hover:border-gold/25 transition-all duration-500`}
+                  className={`history-card grid items-stretch gap-6 overflow-hidden rounded-[2.2rem] border border-off/12 bg-gradient-to-b from-[#141414]/80 to-[#0b0b0b]/90 ${item.title === "Terreno inicial" || item.title === "Resultado atual - lateral" ? 'lg:grid-cols-[1.55fr_0.85fr]' : orientations[idx] === 'portrait' ? 'lg:grid-cols-[minmax(420px,0.98fr)_1.02fr] lg:p-0 lg:items-center' : 'lg:grid-cols-[1.6fr_1fr] lg:p-0'} hover:border-gold/25 transition-all duration-500`}
                   data-parallax="0.25"
                 >
-                  <div className="relative overflow-hidden lg:rounded-l-[2.2rem]">
-                    {orientations[idx] === 'portrait' ? (
-                      <div className="flex h-full w-full">
-                        <div className="relative w-full lg:w-[360px] h-full flex-shrink-0">
+                  <div className={`relative overflow-hidden ${item.title === "Terreno inicial" || item.title === "Resultado atual - lateral" ? 'lg:rounded-l-[2.2rem] lg:min-h-[640px]' : orientations[idx] === 'portrait' ? 'lg:rounded-l-[2.2rem] lg:min-h-[560px]' : 'lg:rounded-l-[2.2rem]'}`}>
+                    {item.title === "Terreno inicial" || item.title === "Resultado atual - lateral" || orientations[idx] === 'portrait' ? (
+                      <div className={`relative h-full w-full ${item.title === "Terreno inicial" || item.title === "Resultado atual - lateral" ? 'min-h-[500px] lg:min-h-[640px]' : 'min-h-[420px] lg:min-h-[560px]'}`}>
+                        <div className="absolute inset-0">
                           <AdaptiveImage
                             src={item.image}
                             alt={item.alt}
                             onOrientation={(o) => setOrientationAt(idx, o)}
-                            className="absolute inset-0 w-full h-full object-contain object-left transition-transform duration-700"
+                            className="h-full w-full object-cover object-center transition-transform duration-700 hover:scale-105"
                           />
                         </div>
-                        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+                        <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.12)_0%,rgba(0,0,0,0.18)_55%,rgba(0,0,0,0.42)_100%)]" />
                       </div>
                     ) : (
-                      <div className="w-full h-0 pb-[56%] lg:pb-0 lg:h-full">
+                      <div className="relative h-0 pb-[56%] lg:pb-0 lg:h-full">
                         <AdaptiveImage
                           src={item.image}
                           alt={item.alt}
                           onOrientation={(o) => setOrientationAt(idx, o)}
-                          className="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-700 transform hover:scale-105"
+                          className="absolute inset-0 h-full w-full object-cover object-center transition-transform duration-700 transform hover:scale-105"
                         />
                         <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
                       </div>
@@ -464,11 +494,20 @@ export default function Home() {
                   </div>
 
                   {/* Text block: compact, overlaps image slightly on large screens */}
-                  <div className={`self-center bg-black/30 lg:bg-transparent lg:backdrop-blur-sm p-6 lg:p-8 lg:-ml-12 ${orientations[idx] === 'portrait' ? 'lg:self-stretch lg:flex lg:items-stretch' : 'lg:self-center'}`}>
-                    <div className={`${orientations[idx] === 'portrait' ? 'h-full flex flex-col justify-between' : 'max-w-[36rem]'}`}>
+                  <div className={`self-center bg-black/30 p-6 ${item.title === "Terreno inicial" || item.title === "Resultado atual - lateral" ? 'lg:self-stretch lg:ml-0 lg:bg-[#0b0b0b]/90 lg:backdrop-blur-md lg:border-l lg:border-off/10 lg:rounded-r-[2.2rem] lg:px-7 lg:py-8' : 'lg:bg-transparent lg:backdrop-blur-sm lg:p-8 lg:-ml-12'} ${orientations[idx] === 'portrait' ? 'lg:self-stretch lg:flex lg:items-center' : 'lg:self-center'}`}>
+                    <div className={`${item.title === "Terreno inicial" || item.title === "Resultado atual - lateral" ? 'max-w-[22rem]' : orientations[idx] === 'portrait' ? 'h-full flex flex-col justify-center max-w-[34rem]' : 'max-w-[36rem]'}`}>
                       <p className="text-xs uppercase tracking-[0.4em] text-gold/85 font-bold">{item.year}</p>
-                      <h3 className="mt-4 text-2xl font-bold tracking-tight text-off">{item.title}</h3>
-                      <p className={`${orientations[idx] === 'portrait' ? 'flex-1 mt-4 text-sm leading-7 text-off/80' : 'mt-4 text-sm leading-7 text-off/80'}`}>{item.description}</p>
+                      <h3 className={`mt-4 font-bold tracking-tight text-off ${item.title === "Terreno inicial" || item.title === "Resultado atual - lateral" ? "text-[1.7rem] leading-tight" : "text-2xl"}`}>
+                        {item.title}
+                      </h3>
+                      <p className={`${orientations[idx] === 'portrait' ? 'flex-1 mt-4 text-sm leading-7 text-off/80' : item.title === "Terreno inicial" || item.title === "Resultado atual - lateral" ? 'mt-3 text-[0.92rem] leading-6 text-off/78' : 'mt-4 text-sm leading-7 text-off/80'}`}>
+                        {item.description}
+                      </p>
+                      {"note" in item && (
+                        <p className={`uppercase tracking-[0.22em] text-gold/70 leading-6 ${item.title === "Terreno inicial" || item.title === "Resultado atual - lateral" ? 'mt-4 text-[0.68rem]' : 'mt-5 text-xs'}`}>
+                          {(item as { note?: string }).note}
+                        </p>
+                      )}
                       {item.people && (
                         <p className="mt-3 text-xs uppercase tracking-[0.25em] text-off/55 font-medium">{item.people}</p>
                       )}
