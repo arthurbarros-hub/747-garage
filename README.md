@@ -55,61 +55,6 @@ lib/
 prisma/
 public/
 ```
-
-## Rodando localmente
-
-### 1) Instalar dependências
-
-```bash
-npm install
-```
-
-### 2) Configurar variáveis de ambiente
-
-Use o arquivo [.env.example](.env.example) como base.
-
-### 3) (Opcional) Seed do banco
-
-```bash
-npm run db:seed
-```
-
-### 4) Iniciar em desenvolvimento
-
-```bash
-npm run dev
-```
-
-Abra [http://localhost:3000](http://localhost:3000).
-
-## Scripts
-
-- `npm run dev`: ambiente de desenvolvimento
-- `npm run build`: build de produção
-- `npm run start`: servidor de produção
-- `npm run lint`: análise de lint
-- `npm run db:seed`: popula dados iniciais
-
-## Galeria do repositório
-
-### Veículos
-
-- ![Mercedes prata](public/vehicles/prata-2.png)
-- ![Mercedes branco](public/vehicles/branco2.png)
-- ![Mercedes vinho](public/vehicles/w201-vinho-externa-frente-lateral.jpeg)
-
-### Peças
-
-- ![Body kit W201](public/pecas/body-kit-w201-kit-completo.jpeg)
-- ![Painel W201](public/pecas/painel-instrumentos-w201.jpeg)
-- ![Lanterna W201](public/pecas/lanterna-traseira-bosch-w201.jpeg)
-
-### História
-
-- ![Primeiros carros](public/historia/01-primeiros-carros-2019.jpeg)
-- ![Construção](public/historia/06-etapas-construcao-2021.jpeg)
-- ![Resultado atual](public/historia/07-resultado-atual-2024.jpeg)
-
 ## Autor
 
 Projeto desenvolvido para apresentação de portfólio da 747 Garage.
