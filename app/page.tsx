@@ -190,14 +190,127 @@ export default function Home() {
     <main className="relative isolate min-h-screen overflow-hidden bg-ink text-off" ref={parallaxRef}>
       <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.025)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.025)_1px,transparent_1px)] bg-[size:96px_96px] opacity-10" />
       <div className="pointer-events-none absolute inset-x-0 top-0 h-[520px] bg-[radial-gradient(circle_at_top,rgba(198,167,94,0.16),transparent_38%)]" />
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[620px] bg-[radial-gradient(circle_at_50%_90%,rgba(212,175,55,0.12),transparent_45%)]" />
+
+      <style>{`
+        @keyframes fadeInUpReveal {
+          from {
+            opacity: 0;
+            transform: translateY(48px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        @keyframes fadeInLeftReveal {
+          from {
+            opacity: 0;
+            transform: translateX(-48px);
+          }
+          to {
+            opacity: 1;
+            transform: translateX(0);
+          }
+        }
+
+        @keyframes fadeInRightReveal {
+          from {
+            opacity: 0;
+            transform: translateX(48px);
+          }
+          to {
+            opacity: 1;
+            transform: translateX(0);
+          }
+        }
+
+        @keyframes slideInScale {
+          from {
+            opacity: 0;
+            transform: scale(0.95);
+          }
+          to {
+            opacity: 1;
+            transform: scale(1);
+          }
+        }
+
+        @keyframes carouselSlide {
+          from {
+            opacity: 0;
+            transform: translateX(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateX(0);
+          }
+        }
+
+        .reveal-up {
+          animation: fadeInUpReveal 0.8s ease-out forwards;
+          opacity: 0;
+        }
+
+        .reveal-left {
+          animation: fadeInLeftReveal 0.8s ease-out forwards;
+          opacity: 0;
+        }
+
+        .reveal-right {
+          animation: fadeInRightReveal 0.8s ease-out forwards;
+          opacity: 0;
+        }
+
+        .reveal-scale {
+          animation: slideInScale 0.8s ease-out forwards;
+          opacity: 0;
+        }
+
+        .carousel-item {
+          animation: carouselSlide 0.5s ease-out forwards;
+        }
+
+        .stagger-1 { animation-delay: 0.1s; }
+        .stagger-2 { animation-delay: 0.2s; }
+        .stagger-3 { animation-delay: 0.3s; }
+        .stagger-4 { animation-delay: 0.4s; }
+        .stagger-5 { animation-delay: 0.5s; }
+        .stagger-6 { animation-delay: 0.6s; }
+
+        .card-hover {
+          transition: all 0.4s cubic-bezier(0.23, 1, 0.320, 1);
+        }
+
+        .card-hover:hover {
+          transform: translateY(-8px);
+          border-color: rgba(198, 167, 94, 0.4);
+          background: linear-gradient(135deg, rgba(198,167,94,0.12) 0%, rgba(198,167,94,0.04) 100%);
+        }
+
+        .history-card {
+          transition: all 0.5s ease;
+          opacity: 0;
+          animation: fadeInUpReveal 0.8s ease-out forwards;
+        }
+
+        .history-card:nth-child(1) { animation-delay: 0s; }
+        .history-card:nth-child(2) { animation-delay: 0.15s; }
+        .history-card:nth-child(3) { animation-delay: 0.3s; }
+        .history-card:nth-child(4) { animation-delay: 0.45s; }
+        .history-card:nth-child(5) { animation-delay: 0.6s; }
+        .history-card:nth-child(6) { animation-delay: 0.75s; }
+        .history-card:nth-child(7) { animation-delay: 0.9s; }
+      `}</style>
 
       <section id="topo" className="relative mx-auto flex min-h-[calc(100vh-7rem)] max-w-6xl flex-col items-center justify-center px-6 py-16 text-center sm:py-20 lg:py-24">
-        <div className="inline-flex items-center rounded-full border border-gold/20 bg-gold/10 px-3 py-2 text-[0.6rem] uppercase tracking-[0.26em] text-gold/90 sm:px-4 sm:text-[0.7rem] sm:tracking-[0.42em]">
+        <div className="reveal-up inline-flex items-center rounded-full border border-gold/20 bg-gold/10 px-3 py-2 text-[0.6rem] uppercase tracking-[0.26em] text-gold/90 sm:px-4 sm:text-[0.7rem] sm:tracking-[0.42em]">
           747 Garage • precisão em primeiro lugar
         </div>
 
-        <div className="mt-10 flex flex-col items-center">
-          <h1 className="gold-shimmer-title text-5xl font-black uppercase tracking-[-0.08em] text-off sm:text-7xl lg:text-8xl">
+        <div className="reveal-up stagger-1 mt-10 flex flex-col items-center">
+          <h1 className="gold-shimmer-title bg-[linear-gradient(180deg,#fffbe9_0%,#e5c875_45%,#c89f31_100%)] bg-clip-text text-5xl font-black uppercase tracking-[-0.08em] text-transparent drop-shadow-[0_0_24px_rgba(212,175,55,0.32)] sm:text-7xl lg:text-8xl">
             747 Garage
           </h1>
           <span
@@ -209,36 +322,36 @@ export default function Home() {
           </span>
         </div>
 
-        <p className="mt-7 max-w-3xl text-sm leading-7 text-off/72 sm:mt-8 sm:text-lg sm:leading-8">
+        <p className="reveal-up stagger-2 mt-7 max-w-2xl text-sm leading-8 text-off/72 sm:mt-8 sm:text-lg sm:leading-9">
           Precisão alemã, curadoria brasileira. Um espaço dedicado a Mercedes clássicas dos anos 80 e 90,
           apresentado com uma estética limpa, simétrica e mais exclusiva para a marca, com veículos, peças e
           serviços especializados.
         </p>
 
-        <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
+        <div className="reveal-up stagger-3 mt-10 flex flex-wrap items-center justify-center gap-4">
           <Link
             href="/vehicles"
-            className="inline-flex items-center justify-center rounded-full bg-off px-6 py-3.5 text-sm font-semibold text-ink transition duration-300 hover:-translate-y-0.5 hover:bg-[#fff6db] hover:shadow-[0_18px_50px_rgba(198,167,94,0.22)]"
+            className="relative inline-flex items-center justify-center overflow-hidden rounded-2xl border border-[#d4af37]/35 bg-[linear-gradient(135deg,rgba(212,175,55,0.34)_0%,rgba(255,238,186,0.2)_40%,rgba(255,255,255,0.12)_100%)] px-7 py-3.5 text-sm font-semibold tracking-[0.02em] text-[#fff8de] shadow-[0_14px_38px_rgba(0,0,0,0.35),0_0_24px_rgba(212,175,55,0.2)] backdrop-blur-lg before:pointer-events-none before:absolute before:inset-0 before:rounded-[inherit] before:bg-[linear-gradient(120deg,rgba(255,255,255,0.45)_-10%,rgba(255,255,255,0.12)_28%,rgba(255,255,255,0)_48%)] before:opacity-75 transition-all duration-300 ease-out hover:scale-105 hover:border-[#f2d37a]/60 hover:brightness-110 hover:shadow-[0_20px_50px_rgba(0,0,0,0.4),0_0_32px_rgba(212,175,55,0.38)] active:scale-95"
           >
             Ver veículos disponíveis
           </Link>
 
           <Link
             href="/servicos"
-            className="inline-flex items-center justify-center rounded-full border border-gold/35 bg-gold/10 px-6 py-3.5 text-sm font-semibold text-gold transition duration-300 hover:-translate-y-0.5 hover:border-gold/60 hover:bg-gold/15"
+            className="relative inline-flex items-center justify-center overflow-hidden rounded-2xl border border-[#d4af37]/30 bg-[linear-gradient(135deg,rgba(23,20,14,0.66)_0%,rgba(44,35,18,0.5)_55%,rgba(212,175,55,0.16)_100%)] px-7 py-3.5 text-sm font-semibold tracking-[0.02em] text-[#e9cc7c] shadow-[0_12px_30px_rgba(0,0,0,0.32)] backdrop-blur-lg before:pointer-events-none before:absolute before:inset-0 before:rounded-[inherit] before:bg-[linear-gradient(120deg,rgba(255,255,255,0.2)_-10%,rgba(255,255,255,0.08)_28%,rgba(255,255,255,0)_50%)] before:opacity-70 transition-all duration-300 ease-out hover:scale-105 hover:border-[#e0bf64]/55 hover:brightness-110 hover:shadow-[0_18px_42px_rgba(0,0,0,0.4),0_0_24px_rgba(212,175,55,0.26)] active:scale-95"
           >
             Explorar serviços
           </Link>
 
           <Link
             href="#orcamento"
-            className="inline-flex items-center justify-center rounded-full border border-off/20 bg-off/5 px-6 py-3.5 text-sm font-semibold text-off transition duration-300 hover:-translate-y-0.5 hover:bg-off/10 hover:border-off/35"
+            className="relative inline-flex items-center justify-center overflow-hidden rounded-2xl border border-white/25 bg-[linear-gradient(135deg,rgba(255,255,255,0.11)_0%,rgba(255,255,255,0.06)_48%,rgba(255,255,255,0.03)_100%)] px-7 py-3.5 text-sm font-semibold tracking-[0.02em] text-off shadow-[0_12px_30px_rgba(0,0,0,0.3)] backdrop-blur-lg before:pointer-events-none before:absolute before:inset-0 before:rounded-[inherit] before:bg-[linear-gradient(120deg,rgba(255,255,255,0.2)_-10%,rgba(255,255,255,0.08)_30%,rgba(255,255,255,0)_50%)] before:opacity-70 transition-all duration-300 ease-out hover:scale-105 hover:border-white/40 hover:brightness-110 hover:shadow-[0_18px_42px_rgba(0,0,0,0.38),0_0_20px_rgba(212,175,55,0.2)] active:scale-95"
           >
             Fazer orçamento
           </Link>
         </div>
 
-        <div className="hero-marquee mt-14 w-full" aria-label="Diferenciais da 747 Garage">
+        <div className="hero-marquee reveal-up stagger-4 mt-14 w-full" aria-label="Diferenciais da 747 Garage">
           <div className="hero-marquee-track">
             {heroHighlights.map((item) => (
               <article
@@ -268,113 +381,45 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="sobre" className="relative scroll-mt-36 border-t border-off/10 bg-black/10 py-24 lg:py-32">
-        <style>{`
-          @keyframes fadeInUpReveal {
-            from {
-              opacity: 0;
-              transform: translateY(48px);
-            }
-            to {
-              opacity: 1;
-              transform: translateY(0);
-            }
-          }
+      <section id="conceito" className="relative scroll-mt-36 border-t border-off/10 py-20 lg:py-24">
+        <div className="mx-auto grid max-w-6xl gap-8 px-6 lg:grid-cols-[1.15fr_0.85fr] lg:items-center">
+          <div className="reveal-left rounded-[2rem] border border-white/10 bg-white/5 p-8 backdrop-blur-md transition-all duration-300 hover:border-gold/35 hover:shadow-[0_20px_45px_rgba(0,0,0,0.35),0_0_26px_rgba(212,175,55,0.14)] lg:p-10">
+            <p className="text-xs uppercase tracking-[0.4em] text-gold/80">Sobre / Conceito</p>
+            <h2 className="mt-4 text-3xl font-semibold tracking-tight text-off sm:text-4xl">
+              Curadoria com rigor técnico e linguagem visual de alto padrão.
+            </h2>
+            <p className="mt-6 max-w-2xl text-sm leading-8 text-off/78 sm:text-base">
+              A 747 Garage nasceu para unir preservação, autenticidade e método. Cada carro, peça e serviço segue um processo
+              claro: avaliação técnica, orientação objetiva e execução cuidadosa. O resultado é uma experiência minimalista,
+              precisa e premium, inspirada no universo das marcas automotivas de referência.
+            </p>
+          </div>
 
-          @keyframes fadeInLeftReveal {
-            from {
-              opacity: 0;
-              transform: translateX(-48px);
-            }
-            to {
-              opacity: 1;
-              transform: translateX(0);
-            }
-          }
+          <div className="reveal-right rounded-[2rem] border border-white/10 bg-[linear-gradient(135deg,rgba(255,255,255,0.1)_0%,rgba(255,255,255,0.04)_45%,rgba(212,175,55,0.14)_100%)] p-6 backdrop-blur-md transition-all duration-300 hover:border-gold/35 hover:shadow-[0_18px_42px_rgba(0,0,0,0.38),0_0_24px_rgba(212,175,55,0.18)] lg:p-8">
+            <div className="grid gap-4 sm:grid-cols-2">
+              <div className="rounded-2xl border border-white/10 bg-black/25 p-5 transition-all duration-300 hover:-translate-y-1 hover:border-gold/30">
+                <p className="text-[0.65rem] uppercase tracking-[0.3em] text-gold/80">Padrão</p>
+                <p className="mt-3 text-sm text-off/88">Processos transparentes e consistentes.</p>
+              </div>
+              <div className="rounded-2xl border border-white/10 bg-black/25 p-5 transition-all duration-300 hover:-translate-y-1 hover:border-gold/30">
+                <p className="text-[0.65rem] uppercase tracking-[0.3em] text-gold/80">Curadoria</p>
+                <p className="mt-3 text-sm text-off/88">Seleção técnica com foco em Mercedes clássicas.</p>
+              </div>
+              <div className="rounded-2xl border border-white/10 bg-black/25 p-5 transition-all duration-300 hover:-translate-y-1 hover:border-gold/30 sm:col-span-2">
+                <p className="text-[0.65rem] uppercase tracking-[0.3em] text-gold/80">Experiência</p>
+                <p className="mt-3 text-sm text-off/88">Atendimento direto, sem ruído, com precisão em cada etapa.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-          @keyframes fadeInRightReveal {
-            from {
-              opacity: 0;
-              transform: translateX(48px);
-            }
-            to {
-              opacity: 1;
-              transform: translateX(0);
-            }
-          }
-
-          @keyframes slideInScale {
-            from {
-              opacity: 0;
-              transform: scale(0.95);
-            }
-            to {
-              opacity: 1;
-              transform: scale(1);
-            }
-          }
-
-          @keyframes staggerReveal {
-            0% { opacity: 0; transform: translateY(32px); }
-            100% { opacity: 1; transform: translateY(0); }
-          }
-
-          .reveal-up {
-            animation: fadeInUpReveal 0.8s ease-out forwards;
-            opacity: 0;
-          }
-
-          .reveal-left {
-            animation: fadeInLeftReveal 0.8s ease-out forwards;
-            opacity: 0;
-          }
-
-          .reveal-right {
-            animation: fadeInRightReveal 0.8s ease-out forwards;
-            opacity: 0;
-          }
-
-          .reveal-scale {
-            animation: slideInScale 0.8s ease-out forwards;
-            opacity: 0;
-          }
-
-          .stagger-1 { animation-delay: 0.1s; }
-          .stagger-2 { animation-delay: 0.2s; }
-          .stagger-3 { animation-delay: 0.3s; }
-          .stagger-4 { animation-delay: 0.4s; }
-          .stagger-5 { animation-delay: 0.5s; }
-          .stagger-6 { animation-delay: 0.6s; }
-
-          .card-hover {
-            transition: all 0.4s cubic-bezier(0.23, 1, 0.320, 1);
-          }
-
-          .card-hover:hover {
-            transform: translateY(-8px);
-            border-color: rgba(198, 167, 94, 0.4);
-            background: linear-gradient(135deg, rgba(198,167,94,0.12) 0%, rgba(198,167,94,0.04) 100%);
-          }
-
-          .history-card {
-            transition: all 0.5s ease;
-            opacity: 0;
-            animation: fadeInUpReveal 0.8s ease-out forwards;
-          }
-
-          .history-card:nth-child(1) { animation-delay: 0s; }
-          .history-card:nth-child(2) { animation-delay: 0.15s; }
-          .history-card:nth-child(3) { animation-delay: 0.3s; }
-          .history-card:nth-child(4) { animation-delay: 0.45s; }
-          .history-card:nth-child(5) { animation-delay: 0.6s; }
-          .history-card:nth-child(6) { animation-delay: 0.75s; }
-          .history-card:nth-child(7) { animation-delay: 0.9s; }
-        `}</style>
+      <section id="historia" className="relative scroll-mt-36 border-t border-off/10 bg-black/10 py-24 lg:py-32">
 
         <div className="mx-auto max-w-6xl px-6">
           {/* Hero intro */}
           <div className="reveal-up mb-20 lg:mb-28">
-            <p className="text-xs uppercase tracking-[0.4em] text-gold/80">A história</p>
+            <p className="text-xs uppercase tracking-[0.4em] text-gold/80">História / Timeline</p>
             <h1 className="mt-4 text-4xl font-black tracking-tight text-off sm:text-5xl lg:text-6xl">
               Precisão construída dia a dia.
             </h1>
@@ -493,7 +538,6 @@ export default function Home() {
                     )}
                   </div>
 
-                  {/* Text block: compact, overlaps image slightly on large screens */}
                   <div className={`self-center bg-black/30 p-6 ${item.title === "Terreno inicial" || item.title === "Resultado atual - lateral" ? 'lg:self-stretch lg:ml-0 lg:bg-[#0b0b0b]/90 lg:backdrop-blur-md lg:border-l lg:border-off/10 lg:rounded-r-[2.2rem] lg:px-7 lg:py-8' : 'lg:bg-transparent lg:backdrop-blur-sm lg:p-8 lg:-ml-12'} ${orientations[idx] === 'portrait' ? 'lg:self-stretch lg:flex lg:items-center' : 'lg:self-center'}`}>
                     <div className={`${item.title === "Terreno inicial" || item.title === "Resultado atual - lateral" ? 'max-w-[22rem]' : orientations[idx] === 'portrait' ? 'h-full flex flex-col justify-center max-w-[34rem]' : 'max-w-[36rem]'}`}>
                       <p className="text-xs uppercase tracking-[0.4em] text-gold/85 font-bold">{item.year}</p>
@@ -577,23 +621,6 @@ export default function Home() {
 
             {/* Mobile: Carrossel */}
             <div className="lg:hidden relative">
-              <style>{`
-                @keyframes carouselSlide {
-                  from {
-                    opacity: 0;
-                    transform: translateX(20px);
-                  }
-                  to {
-                    opacity: 1;
-                    transform: translateX(0);
-                  }
-                }
-
-                .carousel-item {
-                  animation: carouselSlide 0.5s ease-out forwards;
-                }
-              `}</style>
-
               <div className="overflow-hidden rounded-[2.5rem]">
                 <div className="relative">
                   <div className="carousel-item">
@@ -664,19 +691,19 @@ export default function Home() {
                 href="https://wa.me/5511930108649"
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center justify-center rounded-full bg-off px-6 py-3.5 text-sm font-semibold text-ink transition hover:-translate-y-0.5 hover:bg-[#fff6db]"
+                className="relative inline-flex items-center justify-center overflow-hidden rounded-2xl border border-[#d4af37]/35 bg-[linear-gradient(135deg,rgba(212,175,55,0.34)_0%,rgba(255,238,186,0.2)_40%,rgba(255,255,255,0.12)_100%)] px-7 py-3.5 text-sm font-semibold tracking-[0.02em] text-[#fff8de] shadow-[0_14px_38px_rgba(0,0,0,0.35),0_0_24px_rgba(212,175,55,0.2)] backdrop-blur-lg before:pointer-events-none before:absolute before:inset-0 before:rounded-[inherit] before:bg-[linear-gradient(120deg,rgba(255,255,255,0.45)_-10%,rgba(255,255,255,0.12)_28%,rgba(255,255,255,0)_48%)] before:opacity-75 transition-all duration-300 ease-out hover:scale-105 hover:border-[#f2d37a]/60 hover:brightness-110 hover:shadow-[0_20px_50px_rgba(0,0,0,0.4),0_0_32px_rgba(212,175,55,0.38)] active:scale-95"
               >
                 Pedir orçamento no WhatsApp
               </a>
               <Link
                 href="/vehicles"
-                className="inline-flex items-center justify-center rounded-full border border-off/20 bg-off/5 px-6 py-3.5 text-sm font-semibold text-off transition hover:-translate-y-0.5 hover:bg-off/10"
+                className="relative inline-flex items-center justify-center overflow-hidden rounded-2xl border border-[#d4af37]/30 bg-[linear-gradient(135deg,rgba(23,20,14,0.66)_0%,rgba(44,35,18,0.5)_55%,rgba(212,175,55,0.16)_100%)] px-7 py-3.5 text-sm font-semibold tracking-[0.02em] text-[#e9cc7c] shadow-[0_12px_30px_rgba(0,0,0,0.32)] backdrop-blur-lg before:pointer-events-none before:absolute before:inset-0 before:rounded-[inherit] before:bg-[linear-gradient(120deg,rgba(255,255,255,0.2)_-10%,rgba(255,255,255,0.08)_28%,rgba(255,255,255,0)_50%)] before:opacity-70 transition-all duration-300 ease-out hover:scale-105 hover:border-[#e0bf64]/55 hover:brightness-110 hover:shadow-[0_18px_42px_rgba(0,0,0,0.4),0_0_24px_rgba(212,175,55,0.26)] active:scale-95"
               >
                 Ver estoque
               </Link>
               <Link
                 href="/servicos"
-                className="inline-flex items-center justify-center rounded-full border border-off/20 bg-off/5 px-6 py-3.5 text-sm font-semibold text-off transition hover:-translate-y-0.5 hover:bg-off/10"
+                className="relative inline-flex items-center justify-center overflow-hidden rounded-2xl border border-white/25 bg-[linear-gradient(135deg,rgba(255,255,255,0.11)_0%,rgba(255,255,255,0.06)_48%,rgba(255,255,255,0.03)_100%)] px-7 py-3.5 text-sm font-semibold tracking-[0.02em] text-off shadow-[0_12px_30px_rgba(0,0,0,0.3)] backdrop-blur-lg before:pointer-events-none before:absolute before:inset-0 before:rounded-[inherit] before:bg-[linear-gradient(120deg,rgba(255,255,255,0.2)_-10%,rgba(255,255,255,0.08)_30%,rgba(255,255,255,0)_50%)] before:opacity-70 transition-all duration-300 ease-out hover:scale-105 hover:border-white/40 hover:brightness-110 hover:shadow-[0_18px_42px_rgba(0,0,0,0.38),0_0_20px_rgba(212,175,55,0.2)] active:scale-95"
               >
                 Ver serviços
               </Link>
@@ -699,6 +726,95 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <footer className="relative border-t border-off/10 pb-14 pt-12">
+        <div className="mx-auto max-w-6xl px-6">
+          <div className="rounded-[2rem] border border-white/10 bg-white/5 p-8 backdrop-blur-md transition-all duration-300 lg:p-10">
+            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+              <div>
+                <p className="text-xs uppercase tracking-[0.38em] text-gold/85">747 Garage</p>
+                <p className="mt-5 max-w-xs text-sm leading-7 text-off/72">
+                  Curadoria premium de Mercedes clássicas com atendimento direto, técnico e transparente.
+                </p>
+              </div>
+
+              <div>
+                <p className="text-xs uppercase tracking-[0.34em] text-off/55">Links</p>
+                <div className="mt-5 flex flex-col gap-3 text-sm text-off/78">
+                  <Link href="/vehicles" className="transition-all duration-300 hover:text-gold">Veículos</Link>
+                  <Link href="/servicos" className="transition-all duration-300 hover:text-gold">Serviços</Link>
+                  <Link href="/pecas" className="transition-all duration-300 hover:text-gold">Peças</Link>
+                </div>
+              </div>
+
+              <div>
+                <p className="text-xs uppercase tracking-[0.34em] text-off/55">Contato</p>
+                <div className="mt-5 space-y-3 text-sm text-off/78">
+                  <p>+55 11 93010-8649</p>
+                  <p>Rua Antonio Viana, 747 - Parque Paulistano, São Paulo</p>
+                  <p>Seg-Sex 08h às 16h</p>
+                  <a
+                    href="https://www.instagram.com/747_garage/"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-block text-gold transition-all duration-300 hover:text-[#ffe5a3]"
+                  >
+                    @747_garage
+                  </a>
+                </div>
+              </div>
+
+              <div>
+                <p className="text-[0.65rem] uppercase tracking-[0.3em] text-off/42">Desenvolvido por</p>
+                <div className="mt-4 inline-flex flex-col gap-1.5 rounded-[1rem] border border-white/8 bg-white/[0.03] px-4 py-3 text-[0.82rem] text-off/64 backdrop-blur-sm">
+                  <a
+                    href="https://www.instagram.com/mansuor__1/"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="transition-all duration-300 hover:text-gold/90"
+                  >
+                    Instagram
+                  </a>
+                  <a
+                    href="https://www.linkedin.com/in/arthur-mansur-05a617305/"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="transition-all duration-300 hover:text-gold/90"
+                  >
+                    LinkedIn
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-10 border-t border-white/10 pt-6">
+              <div className="flex flex-col gap-4 text-xs tracking-[0.08em] text-off/48 md:flex-row md:items-center md:justify-between">
+                <p className="uppercase tracking-[0.22em] text-off/45">
+                  © {new Date().getFullYear()} 747 Garage. Todos os direitos reservados.
+                </p>
+                <p className="text-off/52">São Paulo - SP</p>
+              </div>
+
+              <div className="mt-4 flex flex-wrap items-center gap-4 text-xs uppercase tracking-[0.18em] text-off/58 md:gap-6">
+                <Link href="/termos-de-uso" className="transition-all duration-300 hover:text-gold">
+                  Termos de Uso
+                </Link>
+                <Link href="/politica-de-privacidade" className="transition-all duration-300 hover:text-gold">
+                  Política de Privacidade
+                </Link>
+                <Link href="/aviso-legal" className="transition-all duration-300 hover:text-gold">
+                  Aviso Legal
+                </Link>
+              </div>
+
+              <p className="mt-4 max-w-3xl text-xs leading-6 text-off/50">
+                Todas as marcas mencionadas pertencem aos seus respectivos proprietários. A 747 Garage não possui
+                vínculo oficial com fabricantes, atuando de forma independente na curadoria e serviços especializados.
+              </p>
+            </div>
+          </div>
+        </div>
+      </footer>
     </main>
   );
 }

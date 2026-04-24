@@ -29,7 +29,11 @@ export default function SiteHeader() {
         aria-expanded={open}
         aria-label="Abrir menu lateral"
         onClick={() => setOpen((prev) => !prev)}
-        className="fixed left-4 top-1/2 z-[60] inline-flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-off/20 bg-black/70 text-off shadow-[0_10px_30px_rgba(0,0,0,0.45)] backdrop-blur-md transition hover:bg-black/90"
+        className={`fixed left-4 z-[60] inline-flex h-11 w-11 items-center justify-center rounded-full border border-off/20 bg-black/70 text-off shadow-[0_10px_30px_rgba(0,0,0,0.45)] backdrop-blur-md transition hover:bg-black/90 ${
+          open
+            ? "bottom-8 md:bottom-auto md:top-1/2 md:-translate-y-1/2"
+            : "top-[62%] -translate-y-1/2 md:top-1/2"
+        }`}
       >
         <span className="relative block h-4 w-5">
           <span
