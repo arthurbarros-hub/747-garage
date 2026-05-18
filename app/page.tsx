@@ -305,7 +305,7 @@ export default function Home() {
 
       <section id="topo" className="relative mx-auto flex min-h-[calc(100vh-7rem)] max-w-6xl flex-col items-center justify-center px-6 py-16 text-center sm:py-20 lg:py-24">
         <div className="hero-pill reveal-up inline-flex items-center rounded-full border border-gold/20 px-3 py-2 text-[0.6rem] uppercase tracking-[0.26em] text-gold/90 sm:px-4 sm:text-[0.7rem] sm:tracking-[0.42em]">
-          747 Garage • feito por mim, sem enrolação
+          747 Garage • cuidado direto, carro a carro
         </div>
 
         <div className="reveal-up stagger-1 mt-10 flex flex-col items-center">
@@ -483,8 +483,8 @@ export default function Home() {
                         />
                 <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.05)_0%,rgba(0,0,0,0.25)_100%)]" />
                 <div className="absolute inset-x-5 bottom-5 rounded-[1.6rem] border border-off/15 bg-black/60 px-5 py-4 backdrop-blur-md">
-                          <p className="text-[0.65rem] uppercase tracking-[0.35em] text-gold/85">Edmilson</p>
-                          <p className="mt-2 text-sm font-medium text-off/95">Capricho não se improvisa</p>
+                  <p className="text-[0.65rem] uppercase tracking-[0.35em] text-gold/85">Edmilson & Eliton</p>
+                  <p className="mt-2 text-sm font-medium text-off/95">Capricho não se improvisa</p>
                 </div>
               </div>
             </figure>
@@ -492,7 +492,7 @@ export default function Home() {
             <div className="reveal-right space-y-6">
               <div className="reveal-up stagger-1 card-hover rounded-[2rem] border border-gold/20 bg-[linear-gradient(135deg,rgba(198,167,94,0.08)_0%,rgba(198,167,94,0.03)_100%)] p-6 backdrop-blur-sm" data-parallax="0.4">
                 <p className="text-xs uppercase tracking-[0.35em] text-gold/80">Como tudo começou</p>
-                <p className="mt-4 text-sm leading-7 text-off/82">Não comecei grande. Comecei com uma ideia, um espaço limitado e uma exigência pessoal que nunca aceitou o comum. Antes da estrutura, já existia o meu jeito de fazer.</p>
+                <p className="mt-4 text-sm leading-7 text-off/82">Não comecei grande. Comecei com uma ideia, um espaço limitado e uma exigência pessoal que nunca aceitou o comum. Nessa fase, meu irmão Eliton foi sócio por um tempo e esteve no começo da caminhada. Antes da estrutura, já existia o meu jeito de fazer.</p>
               </div>
 
               <div className="reveal-up stagger-2 card-hover rounded-[2rem] border border-gold/20 bg-[linear-gradient(135deg,rgba(198,167,94,0.08)_0%,rgba(198,167,94,0.03)_100%)] p-6 backdrop-blur-sm" data-parallax="0.45">
