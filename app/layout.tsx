@@ -7,7 +7,7 @@ export const metadata: Metadata = {
     default: "747 Garage",
     template: "%s | 747 Garage",
   },
-  description: "Mercedes classicas dos anos 80 e 90, curadoria premium e atendimento direto.",
+  description: "Mercedes clássicas dos anos 80 e 90, atendimento direto com o Edmilson.",
 };
 
 export default function RootLayout({

@@ -13,14 +13,14 @@ export type Service = {
 export const services: Service[] = [
   {
     id: "instalacao-body-kit-mercedes-w201",
-    title: "Body Kit Mercedes W201",
+    title: "Instalação de body kit W201",
     category: "Lataria",
-    duration: "Usado",
-    startingPrice: "R$ 2.450",
+    duration: "1 a 3 dias úteis",
+    startingPrice: "A partir de R$ 2.450",
     description:
-      "Body kit Mercedes W201 com para-choque e componentes de acabamento, ideal para projeto visual esportivo com identidade de epoca.",
-    notes: "Conjunto com fotos do kit completo e do carro com o body kit montado.",
-    highlights: ["Body kit", "Kit completo"],
+      "Instalação de body kit Mercedes W201 com ajuste de encaixe, alinhamento e acabamento final para visual esportivo de época.",
+    notes: "Kit sob avaliação prévia para garantir compatibilidade e alinhamento.",
+    highlights: ["Instalação", "Alinhamento", "Acabamento"],
     images: [
       "/pecas/body-kit-w201-instalacao-detalhe-lateral.jpeg",
       "/pecas/para-choque-body-kit.jpeg",

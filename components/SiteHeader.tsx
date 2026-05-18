@@ -5,7 +5,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import type { CSSProperties, MouseEvent } from "react";
 
 const topNavItems = [
-  { href: "/#conceito", label: "Sobre nós", sectionId: "conceito" },
+  { href: "/#conceito", label: "Sobre mim", sectionId: "conceito" },
   { href: "/#contato", label: "Contato", sectionId: "contato" },
 ];
 
@@ -227,7 +227,7 @@ export default function SiteHeader() {
         </div>
       )}
 
-      <header className="sticky top-0 z-50 border-b border-off/10 bg-black/55 backdrop-blur-xl">
+      <header className="header-glass sticky top-0 z-50">
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-6 py-4 sm:px-8">
           <Link
             ref={logoRef}
@@ -257,7 +257,7 @@ export default function SiteHeader() {
                   onClick={() => setActiveSection(item.sectionId)}
                   className={`rounded-full px-3 py-1.5 transition ${
                     isActive
-                      ? "border border-gold/40 bg-gold/10 text-gold"
+                      ? "nav-active border border-gold/40 bg-gold/10 text-gold"
                       : "text-off/72 hover:text-off"
                   }`}
                   aria-current={isActive ? "page" : undefined}

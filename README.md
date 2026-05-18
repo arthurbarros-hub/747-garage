@@ -1,6 +1,6 @@
 # 747 Garage
 
-Portfólio web premium da 747 Garage, focado em Mercedes clássicas dos anos 80 e 90, com catálogo de veículos, peças, serviços especializados e fluxo de reserva.
+Vitrine web da 747 Garage, focada em Mercedes clássicas dos anos 80 e 90, com catálogo de veículos, peças, serviços especializados e fluxo de reserva.
 
 ## Preview
 
@@ -14,7 +14,7 @@ Portfólio web premium da 747 Garage, focado em Mercedes clássicas dos anos 80 
 
 ## Destaques do projeto
 
-- Landing page com identidade visual premium e animações.
+- Landing page com identidade visual autoral e animações.
 - Catálogo de veículos com galeria de fotos e páginas individuais.
 - Catálogo de peças com filtros, ordenação e paginação.
 - Catálogo de serviços com foco em restauração e instalação.

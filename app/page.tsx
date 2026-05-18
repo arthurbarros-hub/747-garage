@@ -11,8 +11,8 @@ export default function Home() {
     { label: "Foco", value: "Foco em Mercedes clássicas" },
     { label: "Assinatura", value: "Escolho a dedo" },
     { label: "Contato", value: "Respondo no WhatsApp, sem enrolação" },
-    { label: "Metodo", value: "Sigo um critério claro" },
-    { label: "Presenca", value: "Acompanho de perto" },
+    { label: "Método", value: "Sigo um critério claro" },
+    { label: "Presença", value: "Acompanho de perto" },
   ];
 
   const historyTimeline = [
@@ -304,12 +304,12 @@ export default function Home() {
       `}</style>
 
       <section id="topo" className="relative mx-auto flex min-h-[calc(100vh-7rem)] max-w-6xl flex-col items-center justify-center px-6 py-16 text-center sm:py-20 lg:py-24">
-        <div className="reveal-up inline-flex items-center rounded-full border border-gold/20 bg-gold/10 px-3 py-2 text-[0.6rem] uppercase tracking-[0.26em] text-gold/90 sm:px-4 sm:text-[0.7rem] sm:tracking-[0.42em]">
+        <div className="hero-pill reveal-up inline-flex items-center rounded-full border border-gold/20 px-3 py-2 text-[0.6rem] uppercase tracking-[0.26em] text-gold/90 sm:px-4 sm:text-[0.7rem] sm:tracking-[0.42em]">
           747 Garage • feito por mim, sem enrolação
         </div>
 
         <div className="reveal-up stagger-1 mt-10 flex flex-col items-center">
-          <h1 className="gold-shimmer-title bg-[linear-gradient(180deg,#fffbe9_0%,#e5c875_45%,#c89f31_100%)] bg-clip-text text-5xl font-black uppercase tracking-[-0.08em] text-transparent drop-shadow-[0_0_24px_rgba(212,175,55,0.32)] sm:text-7xl lg:text-8xl">
+          <h1 className="gold-shimmer-title bg-[linear-gradient(180deg,#fffbe9_0%,#e5c875_45%,#c89f31_100%)] bg-clip-text text-5xl font-black uppercase tracking-[-0.08em] text-transparent drop-shadow-[0_0_18px_rgba(212,175,55,0.26)] sm:text-7xl lg:text-8xl">
             747 Garage
           </h1>
           <span
@@ -383,7 +383,7 @@ export default function Home() {
         <div className="mx-auto max-w-6xl px-6">
           <div className="mb-12 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
             <div>
-              <p className="text-xs uppercase tracking-[0.4em] text-gold/80">Confianca</p>
+              <p className="text-xs uppercase tracking-[0.4em] text-gold/80">Confiança</p>
               <h2 className="mt-4 text-3xl font-semibold tracking-tight text-off sm:text-4xl">
                 Confiança construída no dia a dia.
               </h2>
@@ -398,7 +398,7 @@ export default function Home() {
               {[
                 { label: "Curadoria", value: "Foco em Mercedes clássicas" },
                 { label: "Resposta", value: "Falo direto e objetivo" },
-                { label: "Metodo", value: "Sigo um processo técnico, sem improviso" },
+                { label: "Método", value: "Sigo um processo técnico, sem improviso" },
               ].map((item) => (
                 <div
                   key={item.label}

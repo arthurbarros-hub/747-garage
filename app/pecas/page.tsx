@@ -113,7 +113,7 @@ export default function PecasPage() {
           <div>
             <h1 className="text-4xl font-semibold tracking-tight sm:text-5xl">Peças à venda</h1>
             <p className="mt-3 max-w-2xl text-sm text-off/72 sm:text-base">
-              Anúncios de peças Mercedes com visual premium e informações claras para compra.
+              Anúncios de peças Mercedes com visual caprichado e informações claras para compra.
             </p>
           </div>
 
@@ -207,7 +207,7 @@ export default function PecasPage() {
             return (
               <article
                 key={part.id}
-                className="group premium-lift overflow-hidden rounded-3xl border border-off/10 bg-[#0f0f0f]/95 p-5 shadow-[0_24px_70px_rgba(0,0,0,0.45)] transition-all duration-300 hover:-translate-y-2 hover:border-gold/30"
+                className="group premium-card premium-lift overflow-hidden rounded-3xl bg-[#0f0f0f]/95 p-5 transition-all duration-300 hover:-translate-y-1"
               >
                 <div className="relative overflow-hidden rounded-2xl">
                   <Link href={`/pecas/${part.id}`}>
@@ -217,7 +217,7 @@ export default function PecasPage() {
                       width={900}
                       height={600}
                       sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
-                      className="aspect-[4/3] w-full object-cover"
+                      className="premium-media aspect-[4/3] w-full object-cover"
                     />
                   </Link>
 
